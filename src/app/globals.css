@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-transition {
+  @apply duration-500 transition-all
+}
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #191919;
+  --color-primary-100: #D1DCDF;
+  --color-primary-200: #AFC7CE;
+  --color-primary-300: #ff7300;
+  --color-primary-400: #000000;
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-bg: #191919;
+  --color-text: #ffffff;
+  --color-primary-100: #1a1a2e;
+  --color-primary-200: #16213e;
+  --color-primary-300: #0f3460;
+  --color-primary-400: #ff7300;
+}
