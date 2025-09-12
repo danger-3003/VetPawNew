@@ -5,7 +5,8 @@ import {
   motion,
   useAnimation,
   useMotionValue,
-  MotionValue
+  MotionValue,
+  TargetAndTransition,
 } from "framer-motion";
 
 type HoverMode = "slowDown" | "speedUp" | "pause" | "goBonkers" | null;
@@ -62,7 +63,7 @@ const CircularText: React.FC<CircularTextProps> = ({
     const start = rotation.get();
     if (!onHover) return;
 
-    let transitionConfig: any;
+    let transitionConfig: TargetAndTransition['transition'];
     let scaleVal = 1;
 
     switch (onHover) {

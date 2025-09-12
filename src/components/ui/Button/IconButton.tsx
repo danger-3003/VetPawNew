@@ -1,15 +1,17 @@
-import React from 'react'
+import { IconButtonProps } from "@/components/types/types";
+import React from "react";
 
-function IconButton({ children, onClick, className }) {
+function IconButton({ children, onClick, className, ...props }: IconButtonProps) {
   return (
-    <>
-      <button>
-        <div className={`${className} cursor-pointer`} onClick={onClick}>
-          {children}
-        </div>
-      </button>
-    </>
-  )
+    <button
+      type="button"
+      onClick={onClick}
+      className={`${className ?? ""} cursor-pointer`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
 }
 
-export default IconButton
+export default IconButton;

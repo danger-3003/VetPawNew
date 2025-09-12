@@ -29,3 +29,8 @@ export interface LinkButtonProps {
   target?: "_blank" | "_self" | "_parent" | "_top";
   className?: string;
 }
+
+export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string;
+  children: React.ReactNode;
+}
