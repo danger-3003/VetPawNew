@@ -28,7 +28,7 @@ function HomePage() {
 
   return (
     <>
-      <div className="w-full flex items-center justify-center flex-col">
+      <div className="w-full flex items-center justify-center flex-col" style={{ background: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(/Background.jpg)`, backgroundPosition: "top center", backgroundSize: "cover" }}>
         <div className="w-full max-w-[80rem]">
           <Hero />
         </div>
