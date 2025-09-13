@@ -23,13 +23,17 @@ const Footer = () => {
     }
   };
 
+  const navigateToPage = (id: string) => {
+    window.open('/' + id, "_self", "noopener,noreferrer")
+  }
+
   return (
     <>
       <footer
         id="footer"
         className="bg-dark font-poppins text-white py-10 bg-[#191919]"
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 mb-5 sm:mb-0">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="footer-contact">
               <h4 className="text-xl font-semibold mb-3">
@@ -52,7 +56,6 @@ const Footer = () => {
               </h4>
               <ul className="space-y-2">
                 <li>
-                  <i className="bx bx-chevron-right text-blue-400"></i>{" "}
                   <div
                     onClick={() => { scrollOrNavigate("homeSection") }}
                     className="hover:text-blue-400 transition duration-300 cursor-pointer"
@@ -61,7 +64,6 @@ const Footer = () => {
                   </div>
                 </li>
                 <li>
-                  <i className="bx bx-chevron-right text-blue-400"></i>{" "}
                   <div
                     onClick={() => { scrollOrNavigate("aboutSection") }}
                     className="hover:text-blue-400 transition duration-300 cursor-pointer"
@@ -70,7 +72,6 @@ const Footer = () => {
                   </div>
                 </li>
                 <li>
-                  <i className="bx bx-chevron-right text-blue-400"></i>{" "}
                   <Link
                     href="/"
                     className="hover:text-blue-400 transition duration-300"
@@ -79,7 +80,6 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <i className="bx bx-chevron-right text-blue-400"></i>{" "}
                   <Link
                     href="/"
                     className="hover:text-blue-400 transition duration-300"
@@ -88,13 +88,12 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <i className="bx bx-chevron-right text-blue-400"></i>{" "}
-                  <Link
-                    href="/"
-                    className="hover:text-blue-400 transition duration-300"
+                  <div
+                    onClick={() => { navigateToPage("contact") }}
+                    className="hover:text-blue-400 transition duration-300 cursor-pointer"
                   >
                     Contact Us
-                  </Link>
+                  </div>
                 </li>
               </ul>
             </div>
