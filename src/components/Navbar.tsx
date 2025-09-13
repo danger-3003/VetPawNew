@@ -92,8 +92,8 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
             ))
           }
         </div >
-        <div className='w-full h-12 z-20 fixed bottom-3 px-5 flex items-center justify-center flex-row'>
-          <div className='flex sm:hidden items-center justify-evenly gap-2 w-full max-w-40 border-text border bg-gradient-to-l from-white/80 dark:from-[#191919] dark:to-[#191919] to-white/80 backdrop-blur-lg shadow-customShadow h-full rounded-xl'>
+        <div className='w-full h-12 z-20 fixed sm:hidden bottom-3 px-5 flex items-center justify-center flex-row'>
+          <div className='flex items-center justify-evenly gap-2 w-full max-w-40 border-text border bg-gradient-to-l from-white/80 dark:from-[#191919] dark:to-[#191919] to-white/80 backdrop-blur-lg shadow-customShadow h-full rounded-xl'>
             <IconButton
               className="flex items-center justify-center size-8 group hover:bg-primary-300 dark:hover:bg-primary-400 rounded-lg custom-transition"
               onClick={() => { window.open("/", "_blank") }}

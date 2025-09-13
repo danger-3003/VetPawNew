@@ -8,9 +8,8 @@ const poppins = Poppins({
   weight: ['400', '500', '600', '700', '800']
 });
 
-
 export const metadata: Metadata = {
-  title: "VetPaw | Veterinary Medicines & Animal Health",
+  title: "Veterinary Medicines & Animal Health | VetPaw",
   description: "Trusted veterinary medicines for healthier animals. Safe, effective, and innovative solutions for vets, farmers, and pet owners.",
 };
 
