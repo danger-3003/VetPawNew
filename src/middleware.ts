@@ -12,7 +12,7 @@ export function middleware(req: NextRequest) {
   }
 
   // If user tries to access protected routes without token
-  const protectedRoutes = ["/bookings", "/profile", "/reset-password", "/cart"];
+  const protectedRoutes = ["/bookings", "/profile", "/cart"];
   if (protectedRoutes.some((route) => pathname.startsWith(route)) && !token) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
@@ -21,5 +21,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/login", "/bookings/:path*", "/profile/:path*", "/reset-password/:path*", "/cart/:path*"],
+  matcher: ["/login", "/bookings/:path*", "/profile/:path*", "/cart/:path*"],
 };
