@@ -22,27 +22,29 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const theme = localStorage.getItem('theme-storage');
-                  if (theme) {
-                    const value = JSON.parse(theme).state?.theme;
-                    if (value === 'dark') {
-                      document.documentElement.classList.add('dark');
+        <>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function() {
+                  try {
+                    const theme = localStorage.getItem('theme-storage');
+                    if (theme) {
+                      const value = JSON.parse(theme).state?.theme;
+                      if (value === 'dark') {
+                        document.documentElement.classList.add('dark');
+                      }
                     }
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
+                  } catch (e) {}
+                })();
+              `,
+            }}
+          />
+        </>
       </head>
       <body className={`${poppins.variable} font-poppins scroll-smooth`}>
         {children}
       </body>
-    </html>
+    </html >
   );
 }

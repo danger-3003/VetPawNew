@@ -33,12 +33,12 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
         <div className='fixed top-0 z-20 flex items-center justify-center flex-col w-full bg-gradient-to-l from-white/80 dark:from-[#191919] dark:to-[#191919] to-white/80 backdrop-blur-xl shadow-customShadow duration-500 transition-colors'>
           <nav className='h-16 max-w-[80rem] w-full px-5 relative flex items-center justify-center flex-row'>
             <img src={"/LogoTransparent.png"} alt="Vetpaw Logo" className='aspect-video h-16 absolute left-5 sm:left-8' />
-            <div className={`hidden md:flex items-center w-full justify-center flex-row gap-7 sm:gap-5 lg:gap-7 text-primary-400`}>
+            <div className={`hidden md:flex items-center w-full justify-center flex-row gap-7 sm:gap-5 lg:gap-7`}>
               {
                 navbarURL.map((item, key) => (
                   <div key={key} className='group'>
                     <button onClick={() => (item.click(), handleOpenMenu())} >
-                      <Text className={`px-0.5 lg:px-1 -mb-0.5 text-primary-400 hover:font-medium dark:text-slate-300 hover:text-primary-400 transition-all duration-500`}>
+                      <Text className={`px-0.5 lg:px-1 -mb-0.5 text-text transition-all duration-500`}>
                         {item.title}
                       </Text>
                     </button>
@@ -78,14 +78,14 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
             </div>
           </nav >
           <div className='w-full'>
-            <div className={`h-[1.5px] bg-black dark:bg-white duraiton-500`} style={{ width: `${scrollProgress}%` }}></div>
+            <div className={`h-[1.5px] bg-orange-400 dark:bg-white duraiton-500`} style={{ width: `${scrollProgress}%` }}></div>
           </div>
         </div >
-        <div className={`flex md:hidden fixed z-[19] h-48 sm:h-52 left-0 items-center ${openMenu ? "top-16" : "-top-72"} w-full justify-center flex-col gap-4 text-primary-400 bg-gradient-to-l from-white/80 dark:from-[#191919] dark:to-[#191919] to-white/80 backdrop-blur-lg shadow-customShadow custom-transition`}>
+        <div className={`flex md:hidden fixed z-[19] h-48 sm:h-52 left-0 items-center ${openMenu ? "top-16" : "-top-72"} w-full justify-center flex-col gap-4 bg-gradient-to-l from-white/80 dark:from-[#191919] dark:to-[#191919] to-white/80 backdrop-blur-lg shadow-customShadow custom-transition`}>
           {
             navbarURL.map((item, key) => (
               <div key={key} className='group'>
-                <Text onClick={() => (item.click(), handleOpenMenu())} className={`cursor-pointer px-1 -mb-0.5 text-primary-400 hover:font-bold dark:text-slate-300 hover:text-primary-400"} custom-transition mix-blend-multiply`}>
+                <Text onClick={() => (item.click(), handleOpenMenu())} className={`cursor-pointer px-1 -mb-0.5 text-text custom-transition`}>
                   {item.title}
                 </Text>
               </div>
