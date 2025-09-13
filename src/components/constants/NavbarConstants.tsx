@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { handleNavigate } from "@/utils/Navigate";
 
 export function useNavbarUrls() {
   const router = useRouter();
@@ -58,8 +59,7 @@ export function useNavbarUrls() {
     },
     {
       title: "Products",
-      click: () => scrollOrNavigate("productsSection"),
-      // click: () => window.open("/my-work", "_self", "noopener,noreferrer"),
+      click: () => handleNavigate("products"),
     },
     {
       title: "Our Gallery",
@@ -67,7 +67,7 @@ export function useNavbarUrls() {
     },
     {
       title: "Connect",
-      click: () => window.open("/contact", "_self", "noopener,noreferrer"),
+      click: () => handleNavigate("contact"),
     }
   ];
 

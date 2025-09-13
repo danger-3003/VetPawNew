@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import AOSWrapper from "@/components/ui/AosWrapper";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -42,7 +43,9 @@ export default function RootLayout({
         </>
       </head>
       <body className={`${poppins.variable} font-poppins scroll-smooth`}>
-        {children}
+        <AOSWrapper>
+          {children}
+        </AOSWrapper>
       </body>
     </html >
   );

@@ -1,12 +1,12 @@
 "use client"
 
-import ContactPage from '@/pages/Contact'
+import ProductsPage from '@/pages/Products'
 import React from 'react'
 
 function page() {
   return (
     <>
-      <ContactPage />
+      <ProductsPage />
     </>
   )
 }

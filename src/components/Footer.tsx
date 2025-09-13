@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { handleNavigate } from "@/utils/Navigate";
 
 const Footer = () => {
 
@@ -23,15 +24,11 @@ const Footer = () => {
     }
   };
 
-  const navigateToPage = (id: string) => {
-    window.open('/' + id, "_self", "noopener,noreferrer")
-  }
-
   return (
     <>
       <footer
         id="footer"
-        className="bg-dark font-poppins text-white py-10 bg-[#191919]"
+        className="bg-dark font-poppins text-white py-10 bg-[#191919] border-t border-orange-200"
       >
         <div className="container mx-auto px-4 mb-5 sm:mb-0">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -58,7 +55,7 @@ const Footer = () => {
                 <li>
                   <div
                     onClick={() => { scrollOrNavigate("homeSection") }}
-                    className="hover:text-blue-400 transition duration-300 cursor-pointer"
+                    className="hover:text-orange-300 transition duration-300 cursor-pointer"
                   >
                     Home
                   </div>
@@ -66,31 +63,31 @@ const Footer = () => {
                 <li>
                   <div
                     onClick={() => { scrollOrNavigate("aboutSection") }}
-                    className="hover:text-blue-400 transition duration-300 cursor-pointer"
+                    className="hover:text-orange-300 transition duration-300 cursor-pointer"
                   >
                     About Us
                   </div>
                 </li>
                 <li>
-                  <Link
-                    href="/"
-                    className="hover:text-blue-400 transition duration-300"
+                  <div
+                    onClick={() => { handleNavigate("products") }}
+                    className="hover:text-orange-300 transition duration-300 cursor-pointer"
                   >
                     Products
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="hover:text-blue-400 transition duration-300"
-                  >
-                    Gallery
-                  </Link>
+                  </div>
                 </li>
                 <li>
                   <div
-                    onClick={() => { navigateToPage("contact") }}
-                    className="hover:text-blue-400 transition duration-300 cursor-pointer"
+                    onClick={() => { scrollOrNavigate("gallerySection") }}
+                    className="hover:text-orange-300 transition duration-300 cursor-pointer"
+                  >
+                    Gallery
+                  </div>
+                </li>
+                <li>
+                  <div
+                    onClick={() => { handleNavigate("contact") }}
+                    className="hover:text-orange-300 transition duration-300 cursor-pointer"
                   >
                     Contact Us
                   </div>
@@ -111,13 +108,13 @@ const Footer = () => {
               <div className="flex space-x-4 mt-3">
                 <a
                   href="#"
-                  className="text-blue-400 hover:text-blue-500 transition duration-300"
+                  className="text-orange-300 hover:text-blue-500 transition duration-300"
                 >
                   <i className="bx bxl-facebook text-2xl"></i>
                 </a>
                 <a
                   href="#"
-                  className="text-blue-400 hover:text-blue-500 transition duration-300"
+                  className="text-orange-300 hover:text-blue-500 transition duration-300"
                 >
                   <i className="bx bxl-linkedin text-2xl"></i>
                 </a>

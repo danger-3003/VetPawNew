@@ -30,7 +30,7 @@ export default function Hero() {
     <>
       <section id="homeSection" className="relative flex flex-col items-center justify-center pt-32 sm:pt-28 pb-16 px-6 text-center h-[87vh] max-h-[60rem] text-text">
         {/* Badge */}
-        <div className="mb-10 flex items-center gap-2 rounded-full border border-orange-300/60 px-4 py-1 text-sm text-orange-500 shadow-sm">
+        <div data-aos="fade-up" className="mb-10 flex items-center gap-2 rounded-full border border-orange-300/60 px-4 py-1 text-sm text-orange-500 shadow-sm">
           <Rocket className="h-4 w-4" />
           <span>New Products Available Now</span>
         </div>
@@ -41,26 +41,26 @@ export default function Hero() {
             text="Welcome to"
             delay={50}
             animateBy="words"
-            direction="top"
+            direction="bottom"
             className=""
           />
           <BlurText
             text="VetPaw"
             delay={50}
             animateBy="words"
-            direction="top"
+            direction="bottom"
             className="bg-gradient-to-r from-orange-300 to-red-500 bg-clip-text text-transparent"
           />
         </h1>
 
         {/* Description */}
-        <p className="mt-6 max-w-2xl text-orange-700 dark:text-orange-200">
+        <p data-aos="fade-up" data-aos-delay="100" className="mt-6 max-w-2xl text-orange-700 dark:text-orange-200">
           At {" "}<span className="font-semibold text-orange-600 text-xl">VetPaw Medicine Manufacturers</span> ,
           we are dedicated to advancing animal health and well-being through safe, effective, and innovative veterinary medicines.
         </p>
 
         {/* CTA Buttons */}
-        <div className="mt-8 flex items-center gap-4 flex-row">
+        <div data-aos="fade-up" data-aos-delay="100" className="mt-8 flex items-center gap-4 flex-row">
           <LinkButton
             text="About"
             target="_self"
@@ -78,15 +78,15 @@ export default function Hero() {
 
         {/* Stats */}
         <div className="mt-20 flex items-center justify-center flex-wrap gap-8 sm:flex-row sm:gap-16">
-          <div>
+          <div data-aos="fade-up" data-aos-delay="100">
             <p className="text-2xl font-bold text-orange-600">5K+</p>
             <p className="text-sm text-gray-600 dark:text-white">Happy Customers</p>
           </div>
-          <div>
+          <div data-aos="fade-up" data-aos-delay="100">
             <p className="text-2xl font-bold text-red-500">10+</p>
             <p className="text-sm text-gray-600 dark:text-white">Products</p>
           </div>
-          <div>
+          <div data-aos="fade-up" data-aos-delay="100">
             <p className="text-2xl font-bold text-orange-600">99.9%</p>
             <p className="text-sm text-gray-600 dark:text-white">Satisfaction</p>
           </div>

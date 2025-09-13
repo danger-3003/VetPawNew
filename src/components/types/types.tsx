@@ -34,3 +34,8 @@ export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   className?: string;
   children: React.ReactNode;
 }
+
+export interface OurValuesType {
+  title: string;
+  img: string;
+}
