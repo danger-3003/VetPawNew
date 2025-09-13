@@ -6,7 +6,11 @@ import React from 'react'
 function ProductsPage() {
   return (
     <>
-      <Products />
+      <div className='flex items-center justify-center flex-col bg-background'>
+        <div className='max-w-[80rem]'>
+          <Products />
+        </div>
+      </div>
     </>
   )
 }

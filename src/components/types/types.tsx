@@ -39,3 +39,17 @@ export interface OurValuesType {
   title: string;
   img: string;
 }
+
+export interface ToasterType {
+  status: boolean;
+  message: string;
+  showToast: boolean;
+}
+
+export interface CartState {
+  cartCount: number;
+  addToCart: () => void;
+  removeFromCart: () => void;
+  clearCart: () => void;
+  initialCart: (count: number) => void;
+};

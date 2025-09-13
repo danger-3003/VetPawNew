@@ -5,6 +5,7 @@ import { Rocket, Star, Zap } from "lucide-react";
 import LinkButton from "./ui/Button/LinkButton";
 import { usePathname, useRouter } from "next/navigation";
 import BlurText from "./ui/Texts/BlurText";
+import { handleNavigate } from "@/utils/Navigate";
 
 export default function Hero() {
   const router = useRouter();
@@ -68,10 +69,8 @@ export default function Hero() {
             className="px-7 py-1.5 w-28 sm:w-36"
           />
           <LinkButton
-            href="/"
             text="Products"
-            target="_self"
-            onClick={() => { scrollOrNavigate("productsSection") }}
+            onClick={() => { handleNavigate("products") }}
             className="px-7 py-1.5 w-28 sm:w-36"
           />
         </div>
