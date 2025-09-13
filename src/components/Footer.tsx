@@ -1,7 +1,28 @@
 import React from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const Footer = () => {
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const scrollOrNavigate = (id: string) => {
+    if (typeof window === "undefined") return;
+
+    if (pathname === "/") {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        console.warn(`Element with id '${id}' not found on home page.`);
+      }
+    } else {
+      sessionStorage.setItem("scrollToId", id);
+      router.push("/");
+    }
+  };
+
   return (
     <>
       <footer
@@ -32,21 +53,21 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>
                   <i className="bx bx-chevron-right text-blue-400"></i>{" "}
-                  <Link
-                    href="/"
-                    className="hover:text-blue-400 transition duration-300"
+                  <div
+                    onClick={() => { scrollOrNavigate("homeSection") }}
+                    className="hover:text-blue-400 transition duration-300 cursor-pointer"
                   >
                     Home
-                  </Link>
+                  </div>
                 </li>
                 <li>
                   <i className="bx bx-chevron-right text-blue-400"></i>{" "}
-                  <Link
-                    href="#about"
-                    className="hover:text-blue-400 transition duration-300"
+                  <div
+                    onClick={() => { scrollOrNavigate("aboutSection") }}
+                    className="hover:text-blue-400 transition duration-300 cursor-pointer"
                   >
                     About Us
-                  </Link>
+                  </div>
                 </li>
                 <li>
                   <i className="bx bx-chevron-right text-blue-400"></i>{" "}
