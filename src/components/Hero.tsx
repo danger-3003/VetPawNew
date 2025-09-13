@@ -28,9 +28,9 @@ export default function Hero() {
 
   return (
     <>
-      <section id="homeSection" className="relative flex flex-col items-center justify-center pt-32 sm:pt-28 pb-16 px-6 text-center h-[87vh] max-h-[60rem] text-text">
+      <section id="homeSection" className="relative flex flex-col items-center justify-center pt-40 pb-28 px-6 text-center text-text">
         {/* Badge */}
-        <div data-aos="fade-up" className="mb-10 flex items-center gap-2 rounded-full border border-orange-300/60 px-4 py-1 text-sm text-orange-500 shadow-sm">
+        <div data-aos="fade-up" className="mb-10 flex items-center gap-2 rounded-full border border-white/60 px-4 py-1 text-sm text-white shadow-sm">
           <Rocket className="h-4 w-4" />
           <span>New Products Available Now</span>
         </div>
@@ -42,7 +42,7 @@ export default function Hero() {
             delay={50}
             animateBy="words"
             direction="bottom"
-            className=""
+            className="text-white"
           />
           <BlurText
             text="VetPaw"
@@ -54,8 +54,8 @@ export default function Hero() {
         </h1>
 
         {/* Description */}
-        <p data-aos="fade-up" data-aos-delay="100" className="mt-6 max-w-2xl text-orange-700 dark:text-orange-200">
-          At {" "}<span className="font-semibold text-orange-600 text-xl">VetPaw Medicine Manufacturers</span> ,
+        <p data-aos="fade-up" data-aos-delay="100" className="mt-6 max-w-2xl text-white">
+          At {" "}<span className="font-semibold text-orange-400 text-xl">VetPaw Medicine Manufacturers</span> ,
           we are dedicated to advancing animal health and well-being through safe, effective, and innovative veterinary medicines.
         </p>
 
@@ -79,23 +79,23 @@ export default function Hero() {
         {/* Stats */}
         <div className="mt-20 flex items-center justify-center flex-wrap gap-8 sm:flex-row sm:gap-16">
           <div data-aos="fade-up" data-aos-delay="100">
-            <p className="text-2xl font-bold text-orange-600">5K+</p>
-            <p className="text-sm text-gray-600 dark:text-white">Happy Customers</p>
+            <p className="text-2xl font-bold text-orange-300">5K+</p>
+            <p className="text-sm text-white">Happy Customers</p>
           </div>
           <div data-aos="fade-up" data-aos-delay="100">
             <p className="text-2xl font-bold text-red-500">10+</p>
-            <p className="text-sm text-gray-600 dark:text-white">Products</p>
+            <p className="text-sm text-white">Products</p>
           </div>
           <div data-aos="fade-up" data-aos-delay="100">
-            <p className="text-2xl font-bold text-orange-600">99.9%</p>
-            <p className="text-sm text-gray-600 dark:text-white">Satisfaction</p>
+            <p className="text-2xl font-bold text-orange-300">99.9%</p>
+            <p className="text-sm text-white">Satisfaction</p>
           </div>
         </div>
 
         {/* Decorative Icons */}
-        <Zap className="absolute left-10 top-24 h-6 w-6 text-orange-400/70 animate-pulse opacity-35" />
-        <Star className="absolute left-8 bottom-20 h-6 w-6 text-orange-400/70 animate-ping opacity-35" />
-        <Star className="absolute right-10 top-28 h-6 w-6 text-orange-400/70 animate-spin opacity-35" />
+        <Zap className="absolute left-10 top-24 h-6 w-6 text-orange-400 animate-pulse" />
+        <Star className="absolute left-8 bottom-20 h-6 w-6 text-orange-400 animate-ping" />
+        <Star className="absolute right-10 top-28 h-6 w-6 text-orange-400 animate-spin" />
       </section>
     </>
   );
