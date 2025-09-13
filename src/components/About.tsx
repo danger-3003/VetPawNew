@@ -17,7 +17,7 @@ function About() {
               <p className="text-orange-300 text-3xl font-semibold sm:text-4xl md:text-5xl">
                 What we do?
               </p>
-              <p className="mt-6 text-orange-700 dark:text-orange-200">
+              <p className="mt-6 text-orange-700">
                 At{" "}
                 <span className="font-semibold text-orange-600 text-xl">
                   VetPaw Medicine Manufacturers

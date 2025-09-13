@@ -28,7 +28,7 @@ export default function Hero() {
 
   return (
     <>
-      <section id="homeSection" className="relative flex flex-col items-center justify-center pt-32 sm:pt-28 pb-16 px-6 text-center h-screen max-h-[70rem] sm:max-h-[60rem] text-text">
+      <section id="homeSection" className="relative flex flex-col items-center justify-center pt-32 sm:pt-28 pb-16 px-6 text-center h-[87vh] max-h-[60rem] text-text">
         {/* Badge */}
         <div className="mb-10 flex items-center gap-2 rounded-full border border-orange-300/60 px-4 py-1 text-sm text-orange-500 shadow-sm">
           <Rocket className="h-4 w-4" />
