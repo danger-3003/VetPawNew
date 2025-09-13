@@ -25,14 +25,10 @@ function Home() {
 
   return (
     <>
-      <div className="w-full max-w-[80rem]">
-        <Hero />
-      </div>
-      <div className="bg-orange-50 w-full flex items-center justify-center flex-col">
+      <div className="w-full flex items-center justify-center flex-col">
         <div className="w-full max-w-[80rem]">
-          <About />
+          <Hero />
         </div>
-
         <div className="w-full relative h-36 overflow-hidden">
           <div
             className={`absolute ${reset ? "opacity-0" : "opacity-100"} transition-opacity`}
@@ -44,11 +40,16 @@ function Home() {
             }}
           >
             <img
-              src="/Gifs/RunningAnim.gif"
+              src="/Gifs/DogRunning.gif"
               alt="About animation"
               className="rounded-lg w-32"
             />
           </div>
+        </div>
+      </div>
+      <div className="bg-orange-50 w-full flex items-center justify-center flex-col">
+        <div className="w-full max-w-[80rem]">
+          <About />
         </div>
       </div>
     </>
