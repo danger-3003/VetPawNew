@@ -4,8 +4,11 @@
 import React, { useEffect, useState } from "react";
 import About from "@/components/About";
 import Hero from "@/components/Hero";
+import OurValues from "@/components/OurValues";
+import VisionMission from "@/components/VisionMission";
+import Gallery from "@/components/Gallery";
 
-function Home() {
+function HomePage() {
   const [move, setMove] = useState(false);
   const [reset, setReset] = useState(false);
 
@@ -52,8 +55,23 @@ function Home() {
           <About />
         </div>
       </div>
+      <div className="w-full flex items-center justify-center flex-col">
+        <div className="w-full max-w-[80rem]">
+          <OurValues />
+        </div>
+      </div>
+      <div className="bg-orange-50 w-full flex items-center justify-center flex-col">
+        <div className="w-full max-w-[80rem]">
+          <VisionMission />
+        </div>
+      </div>
+      <div className="w-full flex items-center justify-center flex-col">
+        <div className="w-full max-w-[80rem]">
+          <Gallery />
+        </div>
+      </div>
     </>
   );
 }
 
-export default Home;
+export default HomePage;

@@ -8,6 +8,7 @@ import { useThemeStore } from '@/store/ThemeStore';
 import { useNavbarUrls } from './constants/NavbarConstants';
 import IconButton from './ui/Button/IconButton';
 import ClickOutside from './ui/ClickOutside';
+import { handleNavigate } from '@/utils/Navigate';
 
 function Navbar({ scrollProgress }: { scrollProgress: number }) {
 
@@ -50,7 +51,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
               <div className='hidden sm:flex items-start justify-center gap-2'>
                 <IconButton
                   className="flex items-center justify-center size-8 group hover:bg-primary-300 dark:hover:bg-primary-400 rounded-lg custom-transition"
-                  onClick={() => { window.open("/", "_blank") }}
+                  onClick={() => { handleNavigate("/") }}
                 >
                   <User className='size-[60%] text-primary-300 group-hover:text-background dark:group-hover:text-black dark:text-white custom-transition' />
                 </IconButton>
@@ -96,7 +97,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
           <div className='flex items-center justify-evenly gap-2 w-full max-w-40 border-text border bg-gradient-to-l from-white/80 dark:from-[#191919] dark:to-[#191919] to-white/80 backdrop-blur-lg shadow-customShadow h-full rounded-xl'>
             <IconButton
               className="flex items-center justify-center size-8 group hover:bg-primary-300 dark:hover:bg-primary-400 rounded-lg custom-transition"
-              onClick={() => { window.open("/", "_blank") }}
+              onClick={() => { handleNavigate("/") }}
             >
               <User className='size-[60%] text-primary-300 group-hover:text-background dark:group-hover:text-black dark:text-white custom-transition' />
             </IconButton>
