@@ -10,48 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { CirclePlus } from "lucide-react";
 import ClickOutside from "./ui/ClickOutside";
-
-// ------------------ Types ------------------
-
-type Product = {
-  _id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  product?: {
-    images: string[];
-  };
-};
-
-type Address = {
-  name: string;
-  email: string;
-  phone: string;
-  doorNo: string;
-  address: string;
-  city: string;
-};
-
-type Booking = {
-  _id: string;
-  products: Product[];
-  gstAmount: number;
-  totalAmount: number;
-  grandAmount: number;
-  discount: number;
-  address: Address;
-  status: string;
-  paymentMethod: string;
-  createdAt: string;
-  orderId: string;
-};
-
-// ------------------ Component ------------------
-
-interface IndividualProps {
-  bookingsData: Booking | null;
-  setIndividual: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { IndividualProps, Product } from "./types/types";
 
 const Individual: React.FC<IndividualProps> = ({ bookingsData, setIndividual }) => {
   const columns: ColumnDef<Product>[] = [

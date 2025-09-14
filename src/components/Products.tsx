@@ -2,20 +2,19 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { handleAddToCart, handleGetAllProducts } from '@/services/products/handler'
+import { handleAddToCartApi, handleGetAllProductsApi } from '@/services/products/handler'
 import { Product, ProductsResponse } from './types/ApiTypes';
 import { useCartStore } from '@/store/CartStore';
-import { getCookie } from 'cookies-next';
 import { handleNavigate } from '@/utils/Navigate';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Rocket } from 'lucide-react';
 import { Toaster } from './ui/Toaster';
+import { increaseCartItemApi } from '@/services/cart/handler';
 
 function Products() {
 
   const [products, setProducts] = useState<ProductsResponse | null>(null);
-  const token = getCookie('token');
 
   const [loading, setLoading] = useState<boolean>(true);
   const [alert, setAlert] = useState<{ show: boolean; message: string; status: boolean }>({
@@ -27,7 +26,7 @@ function Products() {
   const { addToCart } = useCartStore();
 
   const handleGetProducts = async () => {
-    const response = await handleGetAllProducts();
+    const response = await handleGetAllProductsApi();
     if (response?.status === 200) {
       setProducts(response?.data);
       setLoading(false);
@@ -35,23 +34,25 @@ function Products() {
   }
 
   const handleAddToCartAction = async ({ productItem }: { productItem: Product }) => {
-    if (!token) {
-      console.log("login");
-      handleNavigate("login");
-      return;
-    }
     try {
       const payload = { productId: productItem?._id, quantity: 1 };
-      const response = await handleAddToCart(payload);
+      const response = await handleAddToCartApi(payload);
 
       if (response.status === 200) {
         addToCart();
         setAlert({
           show: true,
           status: true,
-          message: "Product added to cart successfully ✅",
+          message: "Product added to cart successfully",
         });
       }
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          status: true,
+          message: "",
+        });
+      }, 3000);
     } catch (error: unknown) {
       let message = "Failed to add product to cart";
       if (typeof error === "object" && error !== null && "response" in error) {
@@ -63,16 +64,35 @@ function Products() {
         status: false,
         message,
       });
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          status: false,
+          message: "",
+        });
+      }, 3000);
     }
-    setTimeout(() => {
-      setAlert({
-        show: false,
-        status: false,
-        message: "",
-      });
-    }, 3000);
   };
 
+  // const handleBuyItem = async ({ productId, quantity }: { productId: string; quantity: number }) => {
+  //   const response = await increaseCartItemApi({ productId: productId, quantity: quantity });
+  //   if (response?.status === 200) {
+  //     setAlert({
+  //       show: true,
+  //       status: true,
+  //       message: response?.data?.message,
+  //     });
+  //     addToCart();
+  //     handleNavigate("cart")
+  //   }
+  //   setTimeout(() => {
+  //     setAlert({
+  //       show: false,
+  //       status: true,
+  //       message: "",
+  //     });
+  //   }, 3000);
+  // };
 
   useEffect(() => {
     setLoading(true);
@@ -98,7 +118,10 @@ function Products() {
             >
               Add
             </div>
-            <div className='cursor-pointer bg-orange-400 dark:bg-orange-200 text-white dark:text-[#1e1e1e] font-semibold rounded-lg flex items-center justify-center py-1'>
+            <div
+              className='cursor-pointer bg-orange-400 dark:bg-orange-200 text-white dark:text-[#1e1e1e] font-semibold rounded-lg flex items-center justify-center py-1'
+              onClick={() => { handleNavigate("cart") }}
+            >
               Buy
             </div>
           </div>

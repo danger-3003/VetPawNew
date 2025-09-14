@@ -1,3 +1,4 @@
+// store/CartStore.ts
 "use client";
 
 import { CartState } from "@/components/types/types";
@@ -13,14 +14,17 @@ export const useCartStore = create<CartState>()(
         set({ cartCount: count });
       },
 
-      addToCart: () => {
-        set({ cartCount: get().cartCount + 1 });
+      addToCart: (quantity: number = 1) => {
+        set({ cartCount: get().cartCount + quantity });
       },
 
-      removeFromCart: () => {
-        if (get().cartCount > 0) {
-          set({ cartCount: get().cartCount - 1 });
-        }
+      removeFromCart: (quantity: number = 1) => {
+        const current = get().cartCount;
+        set({ cartCount: Math.max(current - quantity, 0) });
+      },
+
+      setCart: (count: number) => {
+        set({ cartCount: Math.max(count, 0) });
       },
 
       clearCart: () => set({ cartCount: 0 }),

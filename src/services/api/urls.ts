@@ -13,6 +13,11 @@ export const PRODUCTS_API = {
 export const CART_API = {
   ADD_TO_CART: "/cart",
   GET_CART_COUNT: "/cart/count",
+  FETCH: "/cart",
+  INCREASE: "/cart/increase",
+  DECREASE: "/cart/decrease",
+  DELETE: "/cart",
+  UPDATE: "/cart/update",
 };
 
 export const USER_API = {

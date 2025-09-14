@@ -137,7 +137,7 @@ export default function OrdersTable({ tableData, loading }: { tableData: Order[]
                           <tr>
                             <td colSpan={6} className="px-4 py-3 text-center">
                               <div className="flex items-center justify-center">
-                                <Loader className="text-orange-500 animate-spin" />
+                                <p>No records found</p>
                               </div>
                             </td>
                           </tr>

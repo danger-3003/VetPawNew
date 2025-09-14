@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { handleGetUserBookings } from '@/services/user/handler'
+import { handleGetUserBookingsApi } from '@/services/user/handler'
 import { Order } from './types/ApiTypes';
 import DataTable from './ui/DataTable';
 
@@ -11,7 +11,7 @@ function Bookings() {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleGetBookings = async () => {
-    const response = await handleGetUserBookings();
+    const response = await handleGetUserBookingsApi();
     if (response?.status === 200) {
       setBookingData(response?.data?.orders);
       setLoading(false);
