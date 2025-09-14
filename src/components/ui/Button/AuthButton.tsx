@@ -8,7 +8,7 @@ const Button: React.FC<ButtonProps> = ({ children, className = "", ...props }) =
   return (
     <button
       {...props}
-      className={`px-7 py-1 rounded bg-orange-400 text-white dark:text-background dark:font-medium hover:bg-orange-500 hover:dark:bg-orange-500 transition ${className}`}
+      className={`px-7 py-1 rounded bg-orange-400 text-white dark:text-background dark:font-medium hover:bg-orange-500 hover:dark:bg-orange-500 text-sm transition ${className}`}
     >
       {children}
     </button>

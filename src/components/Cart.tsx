@@ -217,77 +217,93 @@ function Cart() {
                       </tr>
                     ))
                   ) : (
-                    cartResponse?.products.map((item, key) => {
-                      return (
-                        <tr
-                          key={key}
-                          className="border-t border-gray-300 dark:border-zinc-600 cursor-pointer hover:bg-gray-50 hover:dark:bg-zinc-800/50 dark:bg-zinc-900 bg-background text-text text-sm transition-colors"
-                        >
-                          <td className="flex items-start justify-start flex-row gap-3 px-4 py-3 w-60">
-                            <img src={item.product.images[0]} alt="" className="h-14" />
-                            <div>
-                              <p className="font-semibold text-lg">
-                                {item.product.title || <Skeleton count={1} />}
-                              </p>
-                              <p className="text-gray-500 text-sm">
-                                {item.product.description || <Skeleton count={1} />}
-                              </p>
-                            </div>
-                          </td>
-                          <td className="w-28 px-4 py-3">
-                            <div className="w-28 rounded-md border border-gray-300 dark:border-zinc-600 h-10 flex items-center justify-between flex-row">
-                              <div
-                                className="w-10 h-10 cursor-pointer flex items-center justify-center text-text text-xl"
-                                onClick={() => {
-                                  handleRemoveItem({
-                                    productId: item?.product?._id,
-                                    quantity: 1,
-                                  });
-                                }}
-                              >
-                                -
-                              </div>
-                              <input
-                                type="text"
-                                value={itemsCount[item.product._id] ?? item.quantity}
-                                className="border-0 outline-none w-10 text-center bg-transparent"
-                                onChange={(e) =>
-                                  handleChangeItem(e, item.product._id)
-                                }
-                              />
-                              <div
-                                className="w-10 h-10 cursor-pointer flex items-center justify-center text-text text-xl"
-                                onClick={() => {
-                                  handleAddItem({
-                                    productId: item?.product?._id,
-                                    quantity: 1,
-                                  });
-                                }}
-                              >
-                                +
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-4 py-3 w-16">
-                            {item?.price.toFixed(2)}
-                          </td>
-                          <td className="px-4 py-3 w-16">
-                            Rs.{(item?.quantity * item?.price).toFixed(2)}
-                          </td>
-                          <td className="px-4 py-3 w-16">
-                            <div className="flex items-center justify-center">
-                              <Trash
-                                width={16}
-                                className="text-red-400 hover:text-red-500 cursor-pointer duration-300"
-                                onClick={() => {
-                                  handleDeleteCartItem(item?.product?._id);
-                                }}
-                              />
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })
+                    <>
+                      {
+                        (cartResponse?.products?.length ?? 0) > 0 ?
+                          <>
+                            {
+                              cartResponse?.products.map((item, key) => {
+                                return (
+                                  <tr
+                                    key={key}
+                                    className="border-t border-gray-300 dark:border-zinc-600 cursor-pointer hover:bg-gray-50 hover:dark:bg-zinc-800/50 dark:bg-zinc-900 bg-background text-text text-sm transition-colors"
+                                  >
+                                    <td className="flex items-start justify-start flex-row gap-3 px-4 py-3 w-60">
+                                      <img src={item.product.images[0]} alt="" className="h-14" />
+                                      <div>
+                                        <p className="font-semibold text-lg">
+                                          {item.product.title || <Skeleton count={1} />}
+                                        </p>
+                                        <p className="text-gray-500 text-sm">
+                                          {item.product.description || <Skeleton count={1} />}
+                                        </p>
+                                      </div>
+                                    </td>
+                                    <td className="w-28 px-4 py-3">
+                                      <div className="w-28 rounded-md border border-gray-300 dark:border-zinc-600 h-10 flex items-center justify-between flex-row">
+                                        <div
+                                          className="w-10 h-10 cursor-pointer flex items-center justify-center text-text text-xl"
+                                          onClick={() => {
+                                            handleRemoveItem({
+                                              productId: item?.product?._id,
+                                              quantity: 1,
+                                            });
+                                          }}
+                                        >
+                                          -
+                                        </div>
+                                        <input
+                                          type="text"
+                                          value={itemsCount[item.product._id] ?? item.quantity}
+                                          className="border-0 outline-none w-10 text-center bg-transparent"
+                                          onChange={(e) =>
+                                            handleChangeItem(e, item.product._id)
+                                          }
+                                        />
+                                        <div
+                                          className="w-10 h-10 cursor-pointer flex items-center justify-center text-text text-xl"
+                                          onClick={() => {
+                                            handleAddItem({
+                                              productId: item?.product?._id,
+                                              quantity: 1,
+                                            });
+                                          }}
+                                        >
+                                          +
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td className="px-4 py-3 w-16">
+                                      {item?.price.toFixed(2)}
+                                    </td>
+                                    <td className="px-4 py-3 w-16">
+                                      Rs.{(item?.quantity * item?.price).toFixed(2)}
+                                    </td>
+                                    <td className="px-4 py-3 w-16">
+                                      <div className="flex items-center justify-center">
+                                        <Trash
+                                          width={16}
+                                          className="text-red-400 hover:text-red-500 cursor-pointer duration-300"
+                                          onClick={() => {
+                                            handleDeleteCartItem(item?.product?._id);
+                                          }}
+                                        />
+                                      </div>
+                                    </td>
+                                  </tr>
+                                );
+                              })
+                            }
+                          </> :
+                          <>
+                            <tr>
+                              <td colSpan={5} className="px-4 py-3">
+                                <p className='text-center text-text text-sm'>No items found</p>
+                              </td>
+                            </tr>
+                          </>
+                      }
+                    </>
                   )}
                 </tbody>
               </table>
@@ -315,13 +331,13 @@ function Cart() {
                 <table className="w-full text-sm">
                   <tbody className="w-full">
                     <tr>
-                      <td className="text-gray-600 dark:text-gray-300">Subtotal:</td>
+                      <td className="text-gray-600 dark:text-gray-300">Subtotal</td>
                       <td className="text-right font-medium text-gray-600 dark:text-gray-300">
                         {summary.subtotal.toFixed(2)}
                       </td>
                     </tr>
                     <tr>
-                      <td className="text-gray-600 dark:text-gray-300">GST (18%):</td>
+                      <td className="text-gray-600 dark:text-gray-300">GST</td>
                       <td className="text-right font-medium text-gray-600 dark:text-gray-300">
                         {summary.gst.toFixed(2)}
                       </td>

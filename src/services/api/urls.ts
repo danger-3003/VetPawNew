@@ -5,7 +5,6 @@ export const AUTH_API = {
   RESET_PASSWORD: "/users/reset-password",
 };
 
-
 export const PRODUCTS_API = {
   FETCH_ALL_PRODUCTS: "/products/all",
 };
@@ -23,3 +22,9 @@ export const CART_API = {
 export const USER_API = {
   MY_BOOKINGS: "/bookings",
 }
+
+export const CHECKOUT_API = {
+  FETCH_CART: "/cart",
+  APPLY_COUPON: "/cart/coupon",
+  PLACE_ORDER: "/cart/buynow",
+};

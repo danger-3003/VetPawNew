@@ -158,3 +158,13 @@ export interface CartOrder {
   updatedAt: string;
   __v: number;
 }
+
+export interface Address {
+  name: string;
+  email: string;
+  phone: string;
+  doorNo: string;
+  address: string;
+  city: string;
+  zipCode: string;
+}
