@@ -2,12 +2,12 @@ import { AddToCartPayload } from "@/components/types/ApiTypes";
 import api from "../api/instance";
 import { CART_API, PRODUCTS_API } from "../api/urls";
 
-export const handleGetAllProducts = async () => {
+export const handleGetAllProductsApi = async () => {
   const response = await api.get(PRODUCTS_API?.FETCH_ALL_PRODUCTS);
   return response;
 }
 
-export const handleAddToCart = async (payload: AddToCartPayload) => {
+export const handleAddToCartApi = async (payload: AddToCartPayload) => {
   const response = await api.post(CART_API.ADD_TO_CART, payload);
   return response;
 };

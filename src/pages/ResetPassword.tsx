@@ -77,7 +77,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col justify-center items-center px-4">
-      <div className="bg-white p-6 rounded-lg shadow-lg dark:bg-zinc-800 shadow-text/20 w-full max-w-sm md:max-w-md">
+      <div className="bg-white p-6 rounded-lg shadow-lg dark:bg-zinc-900 shadow-text/20 w-full max-w-sm md:max-w-md">
         <h1 className="text-red-500 dark:text-white text-3xl font-semibold sm:text-4xl md:text-5xl mb-10 text-center">
           {getOtp ? "Reset Password" : "Forgot Password"}
         </h1>

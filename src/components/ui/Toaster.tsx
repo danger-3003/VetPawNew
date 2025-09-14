@@ -5,7 +5,7 @@ import { CircleCheck, CirclePlus } from 'lucide-react'
 export const Toaster = ({ status, message, showToast }: ToasterType) => {
   return (
     <>
-      <div className={`fixed z-20 bottom-5 ${showToast ? "right-5" : "-right-60"} transition-all duration-500`}>
+      <div className={`fixed z-30 bottom-5 ${showToast ? "right-5" : "-right-60"} transition-all duration-500`}>
         <div className={`${status ? "bg-green-200" : "bg-red-300 border-b-red-600 border-b-[3px]"} rounded-lg px-3 py-1.5 flex items-center justify-between gap-4`}>
           <p className='text-sm'>
             {message}

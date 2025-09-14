@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { setCookie } from "cookies-next";
 import { handleLoginApi, handleSignUpApi } from "@/services/auth/handler";
 import Button from "@/components/ui/Button/AuthButton";
@@ -11,9 +10,9 @@ import { Toaster } from "@/components/ui/Toaster";
 import Select from "@/components/ui/SelectOption";
 import { Loader } from "lucide-react";
 import { handleNavigate } from "@/utils/Navigate";
+import { userStore } from "@/store/UserStore";
 
 function Authentication() {
-  const router = useRouter();
   const [screen, setScreen] = useState<"login" | "signin">("login");
   const [alert, setAlert] = useState<{ show: boolean; message: string; status: boolean }>({
     show: false,
@@ -32,6 +31,7 @@ function Authentication() {
     proofOfRole: "",
     gstNo: "",
   });
+  const { addUser } = userStore();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +42,8 @@ function Authentication() {
       if (response.status === 200) {
         setCookie("token", response?.data?.token, { maxAge: 60 * 60 * 24 * 94 });
         setAlert({ show: true, status: true, message: response?.data?.message });
-        router.replace("/");
+        addUser(response?.data?.user);
+        handleNavigate("");
       }
     } catch (error: unknown) {
       console.log(error);
@@ -122,7 +123,7 @@ function Authentication() {
         </div>
 
         {/* Card */}
-        <div className="relative flex items-center justify-start flex-col w-full sm:w-auto py-5 pb-10 px-5 sm:px-7 md:px-10 my-10 mx-5 dark:bg-zinc-800 rounded-lg shadow-lg shadow-black/20">
+        <div className="relative flex items-center justify-start flex-col w-full sm:w-auto py-5 pb-10 px-5 sm:px-7 md:px-10 my-10 mx-5 dark:bg-zinc-900 rounded-lg shadow-lg shadow-black/20">
           <Toaster
             status={alert?.status}
             message={alert?.message}

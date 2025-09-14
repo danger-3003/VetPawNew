@@ -48,8 +48,70 @@ export interface ToasterType {
 
 export interface CartState {
   cartCount: number;
-  addToCart: () => void;
-  removeFromCart: () => void;
-  clearCart: () => void;
   initialCart: (count: number) => void;
+  addToCart: (quantity?: number) => void;
+  removeFromCart: (quantity?: number) => void;
+  setCart: (count: number) => void;
+  clearCart: () => void;
 };
+
+
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  password: string; // hashed password
+  phone: string;
+  address: string;
+  proofOfRole: string; // URL to uploaded proof
+  role: "retailer" | "admin" | "customer" | string; // extendable
+  verified: boolean;
+  createdAt: string; // ISO date
+  updatedAt: string; // ISO date
+  __v: number;
+  otp?: string; // optional because not always present
+}
+
+export interface userStoreType {
+  user: User | null;
+  addUser: (user: User) => void;
+  removeUser: () => void;
+}
+
+export interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  product?: {
+    images: string[];
+  };
+};
+
+export interface Address {
+  name: string;
+  email: string;
+  phone: string;
+  doorNo: string;
+  address: string;
+  city: string;
+};
+
+export interface Booking {
+  _id: string;
+  products: Product[];
+  gstAmount: number;
+  totalAmount: number;
+  grandAmount: number;
+  discount: number;
+  address: Address;
+  status: string;
+  paymentMethod: string;
+  createdAt: string;
+  orderId: string;
+};
+
+export interface IndividualProps {
+  bookingsData: Booking | null;
+  setIndividual: React.Dispatch<React.SetStateAction<boolean>>;
+}
