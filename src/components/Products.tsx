@@ -41,11 +41,11 @@ function Products() {
       return;
     }
     try {
-      addToCart();
       const payload = { productId: productItem?._id, quantity: 1 };
       const response = await handleAddToCart(payload);
 
       if (response.status === 200) {
+        addToCart();
         setAlert({
           show: true,
           status: true,

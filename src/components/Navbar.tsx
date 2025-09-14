@@ -15,6 +15,7 @@ import { handleGetCartCountApi } from '@/services/products/handler';
 import { useCartStore } from '@/store/CartStore';
 import { Toaster } from './ui/Toaster';
 import { usePathname } from 'next/navigation';
+import { userStore } from '@/store/UserStore';
 
 function Navbar({ scrollProgress }: { scrollProgress: number }) {
 
@@ -25,6 +26,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
   const navbarURL = useNavbarUrls();
   const profileURL = useProfileUrls();
   const { cartCount, initialCart } = useCartStore();
+  const { removeUser } = userStore();
   const [alert, setAlert] = useState<{ show: boolean; message: string; status: boolean }>({
     show: false,
     message: "",
@@ -54,6 +56,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
   }
 
   const handleLogOut = () => {
+    removeUser();
     setAlert({ message: "Logout successfull", show: true, status: true });
     setTimeout(() => {
       setAlert({ message: "", show: false, status: false });
@@ -62,34 +65,32 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
 
   useEffect(() => {
     const token = getCookie("token") as string | undefined;
-    // if (token) {
-    //   handleGetCartCountApi()
-    //     .then((res) => {
-    //       initialCart(res.data.totalCart);
-    //     })
-    //     .catch((err) => {
-    //       setAlert({ message: err.response?.data || "Error fetching cart count", show: true, status: false });
-    //     });
-    // } else {
-    //   initialCart(0);
-    // }
-    if (prevPath.current === "/login" && pathname === "/" && token) {
+    if (token && pathname === "/") {
       handleGetCartCountApi()
         .then((res) => {
           initialCart(res.data.totalCart);
         })
         .catch((err) => {
           setAlert({ message: err.response?.data || "Error fetching cart count", show: true, status: false });
-          // console.error("Error fetching cart count:", err.response?.data);
         });
     }
-    setTimeout(() => {
-      setAlert({ message: "", show: false, status: false });
-    }, 3000);
+    // if (prevPath.current === "/login" && pathname === "/" && token) {
+    //   handleGetCartCountApi()
+    //     .then((res) => {
+    //       initialCart(res.data.totalCart);
+    //     })
+    //     .catch((err) => {
+    //       setAlert({ message: err.response?.data || "Error fetching cart count", show: true, status: false });
+    //       // console.error("Error fetching cart count:", err.response?.data);
+    //     });
+    // }
+    // setTimeout(() => {
+    //   setAlert({ message: "", show: false, status: false });
+    // }, 3000);
 
 
-    prevPath.current = pathname;
-  }, [initialCart, pathname]);
+    // prevPath.current = pathname;
+  }, [pathname]);
 
   return (
     <>
@@ -132,7 +133,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
                     {
                       token &&
                       <div className='bg-orange-400 group-hover:bg-orange-600 rounded-full size-4 absolute -top-1 left-4 flex items-center justify-center custom-transition'>
-                        <p className='text-background text-[10px]'>{cartCount}</p>
+                        <p className='text-background text-[8px]'>{cartCount > 99 ? "99+" : cartCount}</p>
                       </div>
                     }
                   </IconButton>
@@ -184,7 +185,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
                 {
                   token &&
                   <div className='bg-orange-400 group-hover:bg-orange-600 rounded-full size-4 absolute -top-1 left-4 flex items-center justify-center custom-transition'>
-                    <p className='text-background text-[10px]'>{cartCount}</p>
+                    <p className='text-background text-[8px]'>{cartCount > 99 ? "99+" : cartCount}</p>
                   </div>
                 }
               </IconButton>
@@ -218,7 +219,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
                               } else {
                                 item?.click();
                               }
-                            }} className={`text-sm cursor-pointer w-full text-center text-text ${profileURL.length - 1 === key ? "bg-orange-400 text-background" : "hover:bg-slate-100 hover:dark:bg-orange-400"} transition-all duration-300 rounded-lg py-[4px]`}>
+                            }} className={`text-sm cursor-pointer w-full text-center text-text ${profileURL.length - 1 === key ? "bg-orange-400 text-background" : "hover:bg-slate-100 hover:dark:bg-zinc-800/50"} transition-all duration-300 rounded-lg py-[4px]`}>
                               <p>{item?.title}</p>
                             </div>
                           ))

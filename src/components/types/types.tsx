@@ -53,3 +53,26 @@ export interface CartState {
   clearCart: () => void;
   initialCart: (count: number) => void;
 };
+
+
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  password: string; // hashed password
+  phone: string;
+  address: string;
+  proofOfRole: string; // URL to uploaded proof
+  role: "retailer" | "admin" | "customer" | string; // extendable
+  verified: boolean;
+  createdAt: string; // ISO date
+  updatedAt: string; // ISO date
+  __v: number;
+  otp?: string; // optional because not always present
+}
+
+export interface userStoreType {
+  user: User | null;
+  addUser: (user: User) => void;
+  removeUser: () => void;
+}

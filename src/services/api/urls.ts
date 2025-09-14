@@ -14,3 +14,7 @@ export const CART_API = {
   ADD_TO_CART: "/cart",
   GET_CART_COUNT: "/cart/count",
 };
+
+export const USER_API = {
+  MY_BOOKINGS: "/bookings",
+}
