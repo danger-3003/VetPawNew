@@ -67,22 +67,6 @@ function Authentication() {
     }, 3000);
   };
 
-
-  // const handleSignUp = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     await handleSignUpApi(signUpData);
-  //     setScreen("login");
-  //     setAlert({
-  //       show: true,
-  //       status: true,
-  //       message: "User created. Please wait until ADMIN accepts your request",
-  //     });
-  //   } catch (err: unknown) {
-  //     setAlert({ show: true, status: false, message: err?.response?.data?.error || "Signup failed" });
-  //   }
-  // };
-
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -123,7 +107,7 @@ function Authentication() {
 
   return (
     <>
-      <div className="w-full relative flex items-center justify-center flex-col bg-background">
+      <div className="w-full relative flex items-center justify-center flex-col bg-background px-5">
         {/* Banner */}
         <div
           className="h-80 w-full flex items-center justify-center flex-col text-white font-poppins font-semibold text-3xl md:text-4xl lg:text-5xl"
@@ -138,7 +122,7 @@ function Authentication() {
         </div>
 
         {/* Card */}
-        <div className="relative flex items-center justify-start flex-col min-w-60 py-5 pb-10 px-5 sm:px-7 md:px-10 my-10 mx-5 dark:bg-zinc-800 rounded-lg shadow-lg shadow-black/20">
+        <div className="relative flex items-center justify-start flex-col w-full sm:w-auto py-5 pb-10 px-5 sm:px-7 md:px-10 my-10 mx-5 dark:bg-zinc-800 rounded-lg shadow-lg shadow-black/20">
           <Toaster
             status={alert?.status}
             message={alert?.message}
@@ -152,14 +136,14 @@ function Authentication() {
           {/* Tabs */}
           <div className="flex items-center justify-center flex-row gap-3 xs:gap-5">
             <div
-              className={`px-7 py-1 text-center cursor-pointer border-orange-400 border-b-2 ${screen === "login" ? "bg-orange-400 text-white rounded" : "text-text"
+              className={`w-24 sm:w-28 py-1 text-center cursor-pointer border-orange-400 border-b-2 ${screen === "login" ? "bg-orange-400 text-white rounded" : "text-text"
                 }`}
               onClick={() => setScreen("login")}
             >
               <p className="text-sm">Login</p>
             </div>
             <div
-              className={`px-7 py-1 text-center cursor-pointer border-orange-400 border-b-2 ${screen === "signin" ? "bg-orange-400 text-white rounded" : "text-text"
+              className={`w-24 sm:w-28 py-1 text-center cursor-pointer border-orange-400 border-b-2 ${screen === "signin" ? "bg-orange-400 text-white rounded" : "text-text"
                 }`}
               onClick={() => setScreen("signin")}
             >

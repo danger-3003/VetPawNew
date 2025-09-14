@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text } from './ui/Texts/WebTexts';
 import { Moon, ShoppingCart, Sun, User } from 'lucide-react';
 import { useThemeStore } from '@/store/ThemeStore';
@@ -13,16 +13,24 @@ import { getCookie } from 'cookies-next';
 import { handleNavigate } from '@/utils/Navigate';
 import { handleGetCartCountApi } from '@/services/products/handler';
 import { useCartStore } from '@/store/CartStore';
+import { Toaster } from './ui/Toaster';
+import { usePathname } from 'next/navigation';
 
 function Navbar({ scrollProgress }: { scrollProgress: number }) {
 
   const { theme, setTheme } = useThemeStore();
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [showProfile, setShowProfile] = useState<boolean>(false);
+  const pathname = usePathname();
   const navbarURL = useNavbarUrls();
   const profileURL = useProfileUrls();
   const { cartCount, initialCart } = useCartStore();
-
+  const [alert, setAlert] = useState<{ show: boolean; message: string; status: boolean }>({
+    show: false,
+    message: "",
+    status: false,
+  });
+  const prevPath = useRef<string | null>(null);
   const token = getCookie("token");
 
   const handleSetTheme = () => {
@@ -45,24 +53,51 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
     setShowProfile((prev) => (prev === false ? true : false));
   }
 
+  const handleLogOut = () => {
+    setAlert({ message: "Logout successfull", show: true, status: true });
+    setTimeout(() => {
+      setAlert({ message: "", show: false, status: false });
+    }, 3000);
+  }
+
   useEffect(() => {
     const token = getCookie("token") as string | undefined;
-
-    if (token) {
+    // if (token) {
+    //   handleGetCartCountApi()
+    //     .then((res) => {
+    //       initialCart(res.data.totalCart);
+    //     })
+    //     .catch((err) => {
+    //       setAlert({ message: err.response?.data || "Error fetching cart count", show: true, status: false });
+    //     });
+    // } else {
+    //   initialCart(0);
+    // }
+    if (prevPath.current === "/login" && pathname === "/" && token) {
       handleGetCartCountApi()
         .then((res) => {
           initialCart(res.data.totalCart);
         })
         .catch((err) => {
-          console.log(err.response?.data || "Error fetching cart count");
+          setAlert({ message: err.response?.data || "Error fetching cart count", show: true, status: false });
+          // console.error("Error fetching cart count:", err.response?.data);
         });
-    } else {
-      initialCart(0);
     }
-  }, [initialCart]);
+    setTimeout(() => {
+      setAlert({ message: "", show: false, status: false });
+    }, 3000);
+
+
+    prevPath.current = pathname;
+  }, [initialCart, pathname]);
 
   return (
     <>
+      <Toaster
+        message={alert?.message}
+        showToast={alert?.show}
+        status={alert?.status}
+      />
       <ClickOutside onClickOutside={handleCloseMenu}>
         <ClickOutside onClickOutside={handleCloseProfile}>
           <div className='fixed top-0 z-20 flex items-center justify-center flex-col w-full bg-gradient-to-l from-white dark:from-[#191919] dark:to-[#191919] to-white backdrop-blur-xl shadow-customShadow duration-500 transition-colors'>
@@ -94,9 +129,12 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
                     onClick={() => { console.log("Cart") }}
                   >
                     <ShoppingCart className='size-[60%] text-primary-300 group-hover:text-background dark:group-hover:text-black dark:text-white custom-transition' />
-                    <div className='bg-orange-400 group-hover:bg-orange-600 rounded-full size-4 absolute -top-1 left-4 flex items-center justify-center custom-transition'>
-                      <p className='text-background text-[10px]'>{cartCount}</p>
-                    </div>
+                    {
+                      token &&
+                      <div className='bg-orange-400 group-hover:bg-orange-600 rounded-full size-4 absolute -top-1 left-4 flex items-center justify-center custom-transition'>
+                        <p className='text-background text-[10px]'>{cartCount}</p>
+                      </div>
+                    }
                   </IconButton>
                   <IconButton
                     className="flex items-center justify-center size-8 group hover:bg-primary-300 dark:hover:bg-primary-400 rounded-lg custom-transition relative"
@@ -143,9 +181,12 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
                 onClick={() => { console.log("Cart") }}
               >
                 <ShoppingCart className='size-[60%] text-primary-300 group-hover:text-background dark:group-hover:text-black dark:text-white custom-transition' />
-                <div className='bg-orange-400 group-hover:bg-orange-600 rounded-full size-4 absolute -top-1 left-4 flex items-center justify-center custom-transition'>
-                  <p className='text-background text-[10px]'>{cartCount}</p>
-                </div>
+                {
+                  token &&
+                  <div className='bg-orange-400 group-hover:bg-orange-600 rounded-full size-4 absolute -top-1 left-4 flex items-center justify-center custom-transition'>
+                    <p className='text-background text-[10px]'>{cartCount}</p>
+                  </div>
+                }
               </IconButton>
               <IconButton
                 className="flex items-center justify-center size-8 group hover:bg-primary-300 dark:hover:bg-primary-400 rounded-lg custom-transition relative"
@@ -170,12 +211,12 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
                         {
                           profileURL?.map((item, key) => (
                             <div key={key} onClick={() => {
+                              handleCloseProfile();
                               if (profileURL.length - 1 === key) {
-                                item?.click()
-                                handleCloseProfile();
+                                item?.click();
+                                handleLogOut();
                               } else {
                                 item?.click();
-                                handleCloseProfile();
                               }
                             }} className={`text-sm cursor-pointer w-full text-center text-text ${profileURL.length - 1 === key ? "bg-orange-400 text-background" : "hover:bg-slate-100 hover:dark:bg-orange-400"} transition-all duration-300 rounded-lg py-[4px]`}>
                               <p>{item?.title}</p>
