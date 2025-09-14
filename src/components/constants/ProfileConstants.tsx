@@ -3,11 +3,13 @@
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { handleNavigate } from "@/utils/Navigate";
-import { deleteCookie } from "cookies-next";
+import { clearAuthToken } from "@/services/api/instance";
+import { useCartStore } from "@/store/CartStore";
 
 export function useProfileUrls() {
   const router = useRouter();
   const pathname = usePathname();
+  const { initialCart } = useCartStore();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -66,7 +68,8 @@ export function useProfileUrls() {
       title: "Logout",
       click: () => {
         scrollOrNavigate("homeSection");
-        deleteCookie("token");
+        clearAuthToken();
+        initialCart(0);
       },
     }
   ];

@@ -9,7 +9,6 @@ const api = axios.create({
   withCredentials: false,
 });
 
-// ✅ Attach token if present (no Bearer)
 api.interceptors.request.use((config) => {
   const token = getCookie("token") as string | undefined;
   if (token && !config.url?.includes("/login") && !config.url?.includes("/signup")) {
@@ -19,7 +18,19 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// ✅ Utility: clear token
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      clearAuthToken();
+      if (typeof window !== "undefined" && !error.config?.url?.includes("/login")) {
+        window.location.href = "/login";
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const clearAuthToken = () => {
   deleteCookie("token");
 };
