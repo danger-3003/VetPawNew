@@ -40,6 +40,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
 
   const handleOpenMenu = () => {
     setOpenMenu((prev) => (prev === false ? true : false));
+    setShowProfile(false);
   }
 
   const handleCloseMenu = () => {
@@ -52,6 +53,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
 
   const handleOpenProfile = () => {
     setShowProfile((prev) => (prev === false ? true : false));
+    setOpenMenu(false);
   }
 
   const handleLogOut = () => {

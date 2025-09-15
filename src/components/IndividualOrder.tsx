@@ -71,7 +71,7 @@ const Individual: React.FC<IndividualProps> = ({ bookingsData, setIndividual }) 
   return (
     <div className="bg-black/50 flex items-center justify-center w-full h-screen fixed top-0 left-0 z-30 px-5 py-10 sm:p-10 font-poppins">
       <ClickOutside onClickOutside={() => setIndividual(false)}>
-        <div className="w-full max-w-[80vw] md:max-w-2xl lg:max-w-5xl max-h-[80vh] bg-white dark:bg-background relative overflow-auto flex flex-col gap-3 shadow-custom rounded-xl p-5">
+        <div className="w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-2xl lg:max-w-5xl max-h-[80vh] bg-white dark:bg-background relative overflow-auto flex flex-col gap-3 shadow-custom rounded-xl p-5">
           <div>
             <CirclePlus
               className="cursor-pointer rotate-45 text-red-500"
@@ -80,7 +80,7 @@ const Individual: React.FC<IndividualProps> = ({ bookingsData, setIndividual }) 
           </div>
           <div className="flex flex-col gap-3 w-full mt-5">
             {/* Product Table */}
-            <div className="w-full overflow-x-auto pb-3 pt-1">
+            <div className="w-full overflow-x-auto">
               <div className="overflow-x-auto rounded-lg border border-gray-300 dark:border-zinc-600 shadow-sm">
                 <table className="min-w-full w-[768px] text-sm text-left">
                   <thead className="bg-orange-400 text-background">
@@ -125,8 +125,8 @@ const Individual: React.FC<IndividualProps> = ({ bookingsData, setIndividual }) 
             </div>
           </div>
           {/* Delivery Address */}
-          <div className="flex items-start justify-between flex-col md:flex-row gap-5 w-full">
-            <div className="w-full shadow-lg p-3 rounded-lg bg-white dark:bg-zinc-800/20">
+          <div className="flex items-start justify-between flex-col md:flex-row gap-3 w-full">
+            <div className="w-full border border-gray-300 dark:border-zinc-600 p-3 rounded-lg bg-white dark:bg-zinc-800/20">
               <p className="text-orange-400 font-medium mb-3">
                 Delivery Address
               </p>
@@ -167,7 +167,7 @@ const Individual: React.FC<IndividualProps> = ({ bookingsData, setIndividual }) 
                 </div>
               </div>
             </div>
-            <div className="w-full sm:max-w-60 md:w-max shadow-lg p-3 rounded-lg bg-white dark:bg-zinc-800/20 text-sm">
+            <div className="w-full sm:max-w-60 md:w-max border border-gray-300 dark:border-zinc-600 p-3 rounded-lg bg-white dark:bg-zinc-800/20 text-sm">
               <p className="text-orange-400 font-semibold mb-3">Payment&nbsp;Summary</p>
               <table className="w-full text-sm">
                 <tbody>

@@ -21,6 +21,7 @@ export const CART_API = {
 
 export const USER_API = {
   MY_BOOKINGS: "/bookings",
+  PROFILE: "/users/profile",
 }
 
 export const CHECKOUT_API = {
