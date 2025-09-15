@@ -76,7 +76,7 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.firstName}
-                    className="max-w-60 lg:max-w-80 w-[80vw]"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
                   />
                 </div>
                 <div>
@@ -85,7 +85,7 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.role}
-                    className="max-w-60 lg:max-w-80 w-[80vw]"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
                   />
                 </div>
               </div>
@@ -96,7 +96,7 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.email}
-                    className="max-w-60 lg:max-w-80 w-[80vw]"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
                   />
                 </div>
                 <div>
@@ -105,14 +105,14 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.mobile}
-                    className="max-w-60 lg:max-w-80 w-[80vw]"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
                   />
                 </div>
               </div>
               <div className="flex items-center sm:items-start justify-center sm:justify-start w-full">
-                <div className="flex flex-col items-start gap-1 max-w-60 lg:max-w-80 w-[80vw]">
+                <div className="flex flex-col items-start gap-1 max-w-60 lg:max-w-80 w-[80vw] border-none">
                   <label className="text-sm font-medium text-gray-700 dark:text-text">Password</label>
-                  <p>*********</p>
+                  <p className="px-2">*********</p>
                 </div>
               </div>
             </div>
@@ -128,10 +128,10 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.address}
-                    className="max-w-60 lg:max-w-80 w-[80vw]"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
                   />
                 </div>
-                <div className="flex items-start justify-start flex-col max-w-60 lg:max-w-80 w-[80vw]">
+                <div className="flex items-start justify-start flex-col max-w-60 lg:max-w-80 w-[80vw] border-none">
                   <p className="text-sm font-medium text-gray-700 dark:text-text mb-1">
                     Profile Status
                   </p>
@@ -141,12 +141,12 @@ function Profile() {
                 </div>
               </div>
               <div className="flex items-center justify-center gap-5 flex-col sm:flex-row mt-3">
-                <div className="flex items-start justify-start flex-col max-w-60 lg:max-w-80 w-[80vw]">
+                <div className="flex items-start justify-start flex-col max-w-60 lg:max-w-80 w-[80vw] border-none">
                   <p className="text-sm font-medium text-gray-700 dark:text-text mb-1">
                     Forgot password
                   </p>
-                  <Button onClick={() => { handleNavigate("reset-password") }} className="bg-red-300 text-white dark:text-background hover:bg-red-400 w-full rounded px-4 py-1 max-w-40 flex items-center justify-center">
-                    {personalData.status ? "click here" : <Loader width={16} className="animate-spin" />}
+                  <Button onClick={() => { handleNavigate("reset-password") }} className="bg-red-400 text-white dark:text-background hover:bg-red-500 w-full rounded px-4 py-1 max-w-40 flex items-center justify-center">
+                    click&nbsp;here
                   </Button>
                 </div>
               </div>

@@ -41,9 +41,9 @@ const Footer = () => {
                 Nagar, Railway New Colony, Visakhapatnam, Andhra
                 Pradesh 530016
                 <br />
-                <strong>Phone:</strong> 8919643730 / 9866804503 <br />
+                <strong>Phone:</strong> <a href="tel:+91 8919643730">8919643730</a> / <a href="tel:+91 9866804503">9866804503</a> <br />
                 <strong>Email:</strong>{" "}
-                vetpawpharmapvtltd@gmail.com
+                <a href="mailto:vetpawpharmapvtltd@gmail.com">vetpawpharmapvtltd@gmail.com</a>
               </p>
             </div>
 
