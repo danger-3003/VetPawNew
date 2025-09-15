@@ -19,6 +19,7 @@ function Cart() {
   const { addToCart, removeFromCart } = useCartStore();
   const [itemsCount, setItemsCount] = useState<{ [key: string]: number }>({});
   const [total, setTotal] = useState(0);
+  const [btnLoader, setBtnLoader] = useState<boolean>(false);
   const [loader, setLoader] = useState(true);
   const [alert, setAlert] = useState<{ show: boolean; message: string; status: boolean }>({
     show: false,
@@ -69,6 +70,7 @@ function Cart() {
   }, 1500);
 
   const handleDeleteCartItem = async (productId: string) => {
+    setBtnLoader(true);
     const response = await deleteCartItemApi(productId)
     if (response?.status === 200) {
       handleFetCartData();
@@ -79,6 +81,7 @@ function Cart() {
       });
       setLoader(false);
     }
+    setBtnLoader(false);
     setTimeout(() => {
       setAlert({
         show: false,
@@ -94,7 +97,7 @@ function Cart() {
       ...prev,
       [productId]: (prev[productId] ?? (cartResponse?.products.find(p => p.product._id === productId)?.quantity || 0)) + quantity,
     }));
-
+    setBtnLoader(true);
     const response = await increaseCartItemApi({ productId, quantity });
     if (response?.status === 200) {
       setAlert({
@@ -105,6 +108,7 @@ function Cart() {
       addToCart(quantity);
       handleFetCartData();
     }
+    setBtnLoader(false);
     setTimeout(() => {
       setAlert({ show: false, status: true, message: "" });
     }, 1500);
@@ -115,7 +119,7 @@ function Cart() {
       const current = prev[productId] ?? (cartResponse?.products.find(p => p.product._id === productId)?.quantity || 0);
       return { ...prev, [productId]: Math.max(current - quantity, 1) };
     });
-
+    setBtnLoader(true);
     const response = await decreaseCartItemApi({ productId, quantity });
     if (response?.status === 200) {
       setAlert({
@@ -126,6 +130,7 @@ function Cart() {
       removeFromCart(quantity);
       handleFetCartData();
     }
+    setBtnLoader(false);
     setTimeout(() => {
       setAlert({ show: false, status: true, message: "" });
     }, 1500);
@@ -240,14 +245,16 @@ function Cart() {
                                       </div>
                                     </td>
                                     <td className="w-28 px-4 py-3">
-                                      <div className="w-28 rounded-md border border-gray-300 dark:border-zinc-600 h-10 flex items-center justify-between flex-row">
+                                      <div className="w-28 rounded-md overflow-hidden border border-gray-300 dark:border-zinc-600 h-10 flex items-center justify-between flex-row">
                                         <div
-                                          className="w-10 h-10 cursor-pointer flex items-center justify-center text-text text-xl"
+                                          className={`w-10 h-10 hover:bg-zinc-200 dark:hover:bg-zinc-900 ${btnLoader ? "cursor-not-allowed opacity-50" : "cursor-pointer opacity-100"} flex items-center justify-center text-text text-xl border-r border-gray-300 dark:border-zinc-600`}
                                           onClick={() => {
-                                            handleRemoveItem({
-                                              productId: item?.product?._id,
-                                              quantity: 1,
-                                            });
+                                            if (!btnLoader) {
+                                              handleRemoveItem({
+                                                productId: item?.product?._id,
+                                                quantity: 1,
+                                              });
+                                            }
                                           }}
                                         >
                                           -
@@ -256,17 +263,22 @@ function Cart() {
                                           type="text"
                                           value={itemsCount[item.product._id] ?? item.quantity}
                                           className="border-0 outline-none w-10 text-center bg-transparent"
-                                          onChange={(e) =>
-                                            handleChangeItem(e, item.product._id)
+                                          onChange={(e) => {
+                                            if (!btnLoader) {
+                                              handleChangeItem(e, item.product._id)
+                                            }
+                                          }
                                           }
                                         />
                                         <div
-                                          className="w-10 h-10 cursor-pointer flex items-center justify-center text-text text-xl"
+                                          className={`w-10 h-10 hover:bg-zinc-200 dark:hover:bg-zinc-900 ${btnLoader ? "cursor-not-allowed opacity-50" : "cursor-pointer opacity-100"} flex items-center justify-center text-text text-xl border-l border-gray-300 dark:border-zinc-600`}
                                           onClick={() => {
-                                            handleAddItem({
-                                              productId: item?.product?._id,
-                                              quantity: 1,
-                                            });
+                                            if (!btnLoader) {
+                                              handleAddItem({
+                                                productId: item?.product?._id,
+                                                quantity: 1,
+                                              });
+                                            }
                                           }}
                                         >
                                           +
