@@ -39,11 +39,12 @@ function Products() {
       const response = await handleAddToCartApi(payload);
 
       if (response.status === 200) {
+        console.log(response);
         addToCart();
         setAlert({
           show: true,
           status: true,
-          message: "Product added to cart successfully",
+          message: response?.data?.message || "Product added to cart successfully",
         });
       }
       setTimeout(() => {
@@ -52,7 +53,7 @@ function Products() {
           status: true,
           message: "",
         });
-      }, 3000);
+      }, 1500);
     } catch (error: unknown) {
       let message = "Failed to add product to cart";
       if (typeof error === "object" && error !== null && "response" in error) {
@@ -70,7 +71,7 @@ function Products() {
           status: false,
           message: "",
         });
-      }, 3000);
+      }, 1500);
     }
   };
 
@@ -91,7 +92,7 @@ function Products() {
   //       status: true,
   //       message: "",
   //     });
-  //   }, 3000);
+  //   }, 1500);
   // };
 
   useEffect(() => {

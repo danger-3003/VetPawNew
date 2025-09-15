@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
@@ -40,7 +41,16 @@ function CheckoutPage() {
       setCartData(response?.data?.cart);
       setTotalAmount({ totalAmount: response?.data?.cart.totalAmount, discount: 0 });
     } catch (err) {
-      console.log("Fetch Cart Error:", err);
+      setAlert({ show: true, message: "Failed to fetch cart", status: false });
+    }
+    finally {
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          status: false,
+          message: "",
+        });
+      }, 1500);
     }
   };
 
@@ -56,7 +66,7 @@ function CheckoutPage() {
           status: false,
           message: "",
         });
-      }, 3000);
+      }, 1500);
       return;
     }
     try {
@@ -81,7 +91,7 @@ function CheckoutPage() {
           message: "",
         });
         handleNavigate("");
-      }, 3000);
+      }, 2000);
     } catch (err: unknown) {
       if (
         typeof err === "object" &&
@@ -98,7 +108,7 @@ function CheckoutPage() {
             status: false,
             message: "",
           });
-        }, 3000);
+        }, 1500);
       } else {
         setAlert({ show: true, message: "Order failed", status: false });
         setTimeout(() => {
@@ -107,11 +117,22 @@ function CheckoutPage() {
             status: false,
             message: "",
           });
-        }, 3000);
+        }, 1500);
       }
     }
     finally {
       setSubmitLoading(false);
+      setUserData({
+        name: "",
+        email: "",
+        mobile: "",
+        dNo: "",
+        address: "",
+        city: "",
+        postalCode: "",
+        coupon: "",
+        paymentMethod: "cod",
+      })
     }
   };
 
@@ -168,16 +189,6 @@ function CheckoutPage() {
         showToast={alert?.show}
       />
       <div className="w-full flex items-center justify-center flex-col p-5 pt-28 pb-20">
-        {/* Alert */}
-        {/* {alert.show && (
-          <div
-            className={`w-full fixed z-20 top-0 text-center py-2 text-white ${alert.status === true ? "bg-green-500" : "bg-red-500"
-              }`}
-            onClick={() => setAlert({ ...alert, show: false })}
-          >
-            {alert.message}
-          </div>
-        )} */}
 
         <div className="w-full xl:w-[70rem]">
           <form onSubmit={handlePlaceOrder}>

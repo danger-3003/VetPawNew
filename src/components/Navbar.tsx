@@ -58,8 +58,8 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
     removeUser();
     setAlert({ message: "Logout successfull", show: true, status: true });
     setTimeout(() => {
-      setAlert({ message: "", show: false, status: false });
-    }, 3000);
+      setAlert({ message: "", show: false, status: true });
+    }, 1500);
   }
 
   useEffect(() => {
@@ -71,7 +71,16 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
         })
         .catch((err) => {
           setAlert({ message: err.response?.data || "Error fetching cart count", show: true, status: false });
-        });
+        })
+        .finally(() => {
+          setTimeout(() => {
+            setAlert({
+              show: false,
+              status: false,
+              message: "",
+            });
+          }, 1500);
+        })
     }
   }, [pathname]);
 

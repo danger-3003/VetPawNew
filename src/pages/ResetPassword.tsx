@@ -6,6 +6,7 @@ import { Loader } from "lucide-react";
 import Button from "@/components/ui/Button/AuthButton";
 import { Toaster } from "@/components/ui/Toaster";
 import { handleNavigate } from "@/utils/Navigate";
+import { clearAuthToken } from "@/services/api/instance";
 
 interface AlertState {
   show: boolean;
@@ -28,23 +29,30 @@ export default function ForgotPasswordPage() {
     try {
       await handleForgotPasswordApi({ email: resetPassword.email });
       setGetOtp(true);
-      setAlert({ show: true, message: "OTP sent to your email ✅", status: true });
+      setAlert({ show: true, message: "OTP sent to your email", status: true });
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          status: true,
+          message: "",
+        });
+      }, 1500);
     } catch (error: unknown) {
       let message = "Failed to send OTP";
       if (typeof error === "object" && error !== null && "response" in error) {
         const errObj = error as { response?: { data?: { error?: string } } };
         message = errObj.response?.data?.error || message;
       }
-      setAlert({ show: true, message, status: false });
-    } finally {
-      setLoading(false);
+      setAlert({ show: true, message: message, status: false });
       setTimeout(() => {
         setAlert({
           show: false,
           status: false,
           message: "",
         });
-      }, 3000);
+      }, 1500);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,22 +64,31 @@ export default function ForgotPasswordPage() {
       setAlert({ show: true, message: response.data.message, status: true });
       setResetPassword({ email: "", otp: "", newPassword: "" });
       setGetOtp(false);
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          status: true,
+          message: "",
+        });
+        clearAuthToken();
+        handleNavigate("login");
+      }, 1500);
     } catch (error: unknown) {
       let message = "Failed to reset password";
       if (typeof error === "object" && error !== null && "response" in error) {
         const errObj = error as { response?: { data?: { message?: string } } };
         message = errObj.response?.data?.message || message;
       }
-      setAlert({ show: true, message, status: false });
-    } finally {
-      setLoading(false);
+      setAlert({ show: true, message: message, status: false });
       setTimeout(() => {
         setAlert({
           show: false,
           status: false,
           message: "",
         });
-      }, 3000);
+      }, 1500);
+    } finally {
+      setLoading(false);
     }
   };
 

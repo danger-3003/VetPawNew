@@ -43,10 +43,16 @@ function Authentication() {
         setCookie("token", response?.data?.token, { maxAge: 60 * 60 * 24 * 94 });
         setAlert({ show: true, status: true, message: response?.data?.message });
         addUser(response?.data?.user);
-        handleNavigate("");
+        setTimeout(() => {
+          setAlert({
+            show: false,
+            status: true,
+            message: "",
+          });
+        }, 1500);
+        handleNavigate("products");
       }
     } catch (error: unknown) {
-      console.log(error);
       let message = "Login failed";
       if (typeof error === "object" && error !== null && "response" in error) {
         const errObj = error as { response?: { data?: { message?: string } } };
@@ -57,15 +63,15 @@ function Authentication() {
         status: false,
         message,
       });
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          status: false,
+          message: "",
+        });
+      }, 1500);
     }
     setLoading(false);
-    setTimeout(() => {
-      setAlert({
-        show: false,
-        status: false,
-        message: "",
-      });
-    }, 3000);
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -81,28 +87,35 @@ function Authentication() {
           status: true,
           message: "User created. Please wait until ADMIN accepts your request",
         });
+        setTimeout(() => {
+          setAlert({
+            show: false,
+            status: true,
+            message: "",
+          });
+          handleNavigate("products");
+        }, 1500);
       }
     } catch (error: unknown) {
-      console.log(error);
       let message = "Signup failed";
       if (typeof error === "object" && error !== null && "response" in error) {
-        const errObj = error as { response?: { data?: { error?: string } } };
-        message = errObj.response?.data?.error || message;
+        const errObj = error as { response?: { data?: { message?: string } } };
+        message = errObj.response?.data?.message || message;
       }
       setAlert({
         show: true,
         status: false,
-        message,
+        message: message,
       });
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          status: false,
+          message: "",
+        });
+      }, 1500);
     }
     setLoading(false);
-    setTimeout(() => {
-      setAlert({
-        show: false,
-        status: false,
-        message: "",
-      });
-    }, 3000);
   };
 
 
