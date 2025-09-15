@@ -76,7 +76,7 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.firstName}
-                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none dark:bg-transparent"
                   />
                 </div>
                 <div>
@@ -85,7 +85,7 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.role}
-                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none dark:bg-transparent"
                   />
                 </div>
               </div>
@@ -96,7 +96,7 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.email}
-                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none dark:bg-transparent"
                   />
                 </div>
                 <div>
@@ -105,14 +105,14 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.mobile}
-                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none dark:bg-transparent"
                   />
                 </div>
               </div>
               <div className="flex items-center sm:items-start justify-center sm:justify-start w-full">
                 <div className="flex flex-col items-start gap-1 max-w-60 lg:max-w-80 w-[80vw] border-none">
                   <label className="text-sm font-medium text-gray-700 dark:text-text">Password</label>
-                  <p className="px-2">*********</p>
+                  <p className="px-2 text-text">*********</p>
                 </div>
               </div>
             </div>
@@ -128,7 +128,7 @@ function Profile() {
                     type="text"
                     readOnly
                     value={personalData.address}
-                    className="max-w-60 lg:max-w-80 w-[80vw] border-none"
+                    className="max-w-60 lg:max-w-80 w-[80vw] border-none dark:bg-transparent"
                   />
                 </div>
                 <div className="flex items-start justify-start flex-col max-w-60 lg:max-w-80 w-[80vw] border-none">
