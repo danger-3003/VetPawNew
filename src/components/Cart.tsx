@@ -65,7 +65,7 @@ function Cart() {
     }
     setTimeout(() => {
       setAlert({ show: false, status: true, message: "" });
-    }, 3000);
+    }, 1500);
   }, 1500);
 
   const handleDeleteCartItem = async (productId: string) => {
@@ -85,7 +85,7 @@ function Cart() {
         status: true,
         message: "",
       });
-    }, 3000);
+    }, 1500);
   }
 
   const handleAddItem = async ({ productId, quantity }: { productId: string; quantity: number }) => {
@@ -107,7 +107,7 @@ function Cart() {
     }
     setTimeout(() => {
       setAlert({ show: false, status: true, message: "" });
-    }, 3000);
+    }, 1500);
   };
 
   const handleRemoveItem = async ({ productId, quantity }: { productId: string; quantity: number }) => {
@@ -128,7 +128,7 @@ function Cart() {
     }
     setTimeout(() => {
       setAlert({ show: false, status: true, message: "" });
-    }, 3000);
+    }, 1500);
   };
 
   useEffect(() => {
@@ -361,7 +361,20 @@ function Cart() {
                 className="max-w-60 md:max-w-full w-full normal-case font-normal"
                 color="orange"
                 onClick={() => {
-                  handleNavigate("checkout");
+                  if (!(cartResponse?.products?.length ?? 0 > 0)) {
+                    setAlert({ show: true, message: "Add items to cart", status: false });
+                    setTimeout(() => {
+                      setAlert({
+                        show: false,
+                        status: false,
+                        message: "",
+                      });
+                      handleNavigate("products");
+                    }, 1500);
+                  }
+                  else {
+                    handleNavigate("checkout");
+                  }
                 }}
               >
                 Checkout
