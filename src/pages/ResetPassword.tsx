@@ -36,7 +36,7 @@ export default function ForgotPasswordPage() {
           status: true,
           message: "",
         });
-      }, 1500);
+      }, 2500);
     } catch (error: unknown) {
       let message = "Failed to send OTP";
       if (typeof error === "object" && error !== null && "response" in error) {
@@ -50,7 +50,7 @@ export default function ForgotPasswordPage() {
           status: false,
           message: "",
         });
-      }, 1500);
+      }, 2500);
     } finally {
       setLoading(false);
     }
@@ -71,8 +71,8 @@ export default function ForgotPasswordPage() {
           message: "",
         });
         clearAuthToken();
-        handleNavigate("login");
-      }, 1500);
+        handleNavigate("auth");
+      }, 2500);
     } catch (error: unknown) {
       let message = "Failed to reset password";
       if (typeof error === "object" && error !== null && "response" in error) {
@@ -86,7 +86,7 @@ export default function ForgotPasswordPage() {
           status: false,
           message: "",
         });
-      }, 1500);
+      }, 2500);
     } finally {
       setLoading(false);
     }
@@ -159,7 +159,7 @@ export default function ForgotPasswordPage() {
 
         <button
           onClick={() => {
-            handleNavigate("login")
+            handleNavigate("auth")
             setGetOtp(false);
             setResetPassword({ email: "", otp: "", newPassword: "" });
           }}

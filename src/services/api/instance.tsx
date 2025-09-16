@@ -11,7 +11,7 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   const token = getCookie("token") as string | undefined;
-  if (token && !config.url?.includes("/login") && !config.url?.includes("/signup")) {
+  if (token && !config.url?.includes("/auth") && !config.url?.includes("/signup")) {
     // Attach token only for requests other than login/signup
     config.headers.Authorization = token;
   }
@@ -23,8 +23,8 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       clearAuthToken();
-      if (typeof window !== "undefined" && !error.config?.url?.includes("/login")) {
-        window.location.href = "/login";
+      if (typeof window !== "undefined" && !error.config?.url?.includes("/auth")) {
+        window.location.href = "/auth";
       }
     }
     return Promise.reject(error);

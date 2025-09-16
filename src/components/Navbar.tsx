@@ -61,7 +61,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
     setAlert({ message: "Logout successfull", show: true, status: true });
     setTimeout(() => {
       setAlert({ message: "", show: false, status: true });
-    }, 1500);
+    }, 2500);
   }
 
   useEffect(() => {
@@ -81,7 +81,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
               status: false,
               message: "",
             });
-          }, 1500);
+          }, 2500);
         })
     }
   }, [pathname]);
@@ -223,7 +223,7 @@ function Navbar({ scrollProgress }: { scrollProgress: number }) {
                     </> :
                     <>
                       <div onClick={() => {
-                        handleNavigate("login")
+                        handleNavigate("auth")
                       }} className={`text-sm cursor-pointer w-full text-center text-text bg-orange-400 transition-all duration-300 rounded-lg py-[4px]`}>
                         <p>Login</p>
                       </div>

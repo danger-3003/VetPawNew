@@ -66,8 +66,8 @@ function Cart() {
     }
     setTimeout(() => {
       setAlert({ show: false, status: true, message: "" });
-    }, 1500);
-  }, 1500);
+    }, 2500);
+  }, 2500);
 
   const handleDeleteCartItem = async (productId: string) => {
     setBtnLoader(true);
@@ -88,7 +88,7 @@ function Cart() {
         status: true,
         message: "",
       });
-    }, 1500);
+    }, 2500);
   }
 
   const handleAddItem = async ({ productId, quantity }: { productId: string; quantity: number }) => {
@@ -111,7 +111,7 @@ function Cart() {
     setBtnLoader(false);
     setTimeout(() => {
       setAlert({ show: false, status: true, message: "" });
-    }, 1500);
+    }, 2500);
   };
 
   const handleRemoveItem = async ({ productId, quantity }: { productId: string; quantity: number }) => {
@@ -133,7 +133,7 @@ function Cart() {
     setBtnLoader(false);
     setTimeout(() => {
       setAlert({ show: false, status: true, message: "" });
-    }, 1500);
+    }, 2500);
   };
 
   useEffect(() => {
@@ -345,13 +345,13 @@ function Cart() {
                     <tr>
                       <td className="text-gray-600 dark:text-gray-300">Subtotal</td>
                       <td className="text-right font-medium text-gray-600 dark:text-gray-300">
-                        {summary.subtotal.toFixed(2)}
+                        {summary?.subtotal?.toFixed(2) ?? 0.00}
                       </td>
                     </tr>
                     <tr>
                       <td className="text-gray-600 dark:text-gray-300">GST</td>
                       <td className="text-right font-medium text-gray-600 dark:text-gray-300">
-                        {summary.gst.toFixed(2)}
+                        {summary?.gst?.toFixed(2) ?? 0.00}
                       </td>
                     </tr>
                     <tr>
@@ -359,7 +359,7 @@ function Cart() {
                         <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-300 dark:border-zinc-600">
                           <p className="font-semibold text-gray-800 dark:text-text">Total</p>
                           <p className="text-right font-medium text-gray-800 dark:text-text">
-                            {summary.grand.toFixed(2)}
+                            {summary?.grand?.toFixed(2) ?? 0.00}
                           </p>
                         </div>
                       </td>
@@ -382,7 +382,7 @@ function Cart() {
                         message: "",
                       });
                       handleNavigate("products");
-                    }, 1500);
+                    }, 2500);
                   }
                   else {
                     handleNavigate("checkout");

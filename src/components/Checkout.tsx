@@ -50,7 +50,7 @@ function CheckoutPage() {
           status: false,
           message: "",
         });
-      }, 1500);
+      }, 2500);
     }
   };
 
@@ -66,7 +66,7 @@ function CheckoutPage() {
           status: false,
           message: "",
         });
-      }, 1500);
+      }, 2500);
       return;
     }
     try {
@@ -108,7 +108,7 @@ function CheckoutPage() {
             status: false,
             message: "",
           });
-        }, 1500);
+        }, 2500);
       } else {
         setAlert({ show: true, message: "Order failed", status: false });
         setTimeout(() => {
@@ -117,7 +117,7 @@ function CheckoutPage() {
             status: false,
             message: "",
           });
-        }, 1500);
+        }, 2500);
       }
     }
     finally {
