@@ -49,7 +49,7 @@ function Authentication() {
             status: true,
             message: "",
           });
-        }, 1500);
+        }, 2500);
         handleNavigate("products");
       }
     } catch (error: unknown) {
@@ -69,7 +69,7 @@ function Authentication() {
           status: false,
           message: "",
         });
-      }, 1500);
+      }, 2500);
     }
     setLoading(false);
   };
@@ -80,12 +80,12 @@ function Authentication() {
     try {
       const response = await handleSignUpApi(signUpData);
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         setScreen("login");
         setAlert({
           show: true,
           status: true,
-          message: "User created. Please wait until ADMIN accepts your request",
+          message: response?.data?.message,
         });
         setTimeout(() => {
           setAlert({
@@ -94,13 +94,14 @@ function Authentication() {
             message: "",
           });
           handleNavigate("products");
-        }, 1500);
+        }, 2500);
       }
     } catch (error: unknown) {
       let message = "Signup failed";
       if (typeof error === "object" && error !== null && "response" in error) {
-        const errObj = error as { response?: { data?: { message?: string } } };
-        message = errObj.response?.data?.message || message;
+        const errObj = error as { response?: { data?: { error?: string } } };
+        console.log(error);
+        message = errObj.response?.data?.error || message;
       }
       setAlert({
         show: true,
@@ -113,7 +114,7 @@ function Authentication() {
           status: false,
           message: "",
         });
-      }, 1500);
+      }, 2500);
     }
     setLoading(false);
   };
@@ -257,7 +258,7 @@ function Authentication() {
                     if (file) {
                       const reader = new FileReader();
                       reader.onload = (event) => {
-                        const base64String = (event.target?.result as string).split(",")[1];
+                        const base64String = event.target?.result as string;
                         setSignUpData({ ...signUpData, proofOfRole: base64String });
                       };
                       reader.readAsDataURL(file);

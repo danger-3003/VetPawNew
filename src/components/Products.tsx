@@ -53,7 +53,7 @@ function Products() {
           status: true,
           message: "",
         });
-      }, 1500);
+      }, 2500);
     } catch (error: unknown) {
       let message = "Failed to add product to cart";
       if (typeof error === "object" && error !== null && "response" in error) {
@@ -71,7 +71,7 @@ function Products() {
           status: false,
           message: "",
         });
-      }, 1500);
+      }, 2500);
     }
   };
 
@@ -92,7 +92,7 @@ function Products() {
   //       status: true,
   //       message: "",
   //     });
-  //   }, 1500);
+  //   }, 2500);
   // };
 
   useEffect(() => {

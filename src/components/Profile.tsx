@@ -48,7 +48,7 @@ function Profile() {
             status: false,
             message: "",
           });
-        }, 1500);
+        }, 2500);
       });
   }, []);
 

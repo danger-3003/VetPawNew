@@ -64,7 +64,7 @@ function Contact() {
         });
         setTimeout(() => {
           setAlert({ show: false, status: true, message: "" });
-        }, 1500);
+        }, 2500);
       }
     } catch (err) {
       setAlert({
@@ -74,7 +74,7 @@ function Contact() {
       });
       setTimeout(() => {
         setAlert({ show: false, status: false, message: "" });
-      }, 1500);
+      }, 2500);
     } finally {
       setDisable(false);
     }

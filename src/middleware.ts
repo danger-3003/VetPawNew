@@ -7,19 +7,19 @@ export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // If user is logged in, block /login
-  if (pathname.startsWith("/login") && token) {
+  if (pathname.startsWith("/auth") && token) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
   // If user tries to access protected routes without token
   const protectedRoutes = ["/bookings", "/profile", "/cart", "/checkout"];
   if (protectedRoutes.some((route) => pathname.startsWith(route)) && !token) {
-    return NextResponse.redirect(new URL("/login", req.url));
+    return NextResponse.redirect(new URL("/auth", req.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/login", "/bookings/:path*", "/profile/:path*", "/cart/:path*", "/checkout/:path*"],
+  matcher: ["/auth", "/bookings/:path*", "/profile/:path*", "/cart/:path*", "/checkout/:path*"],
 };
