@@ -10,12 +10,12 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Rocket } from 'lucide-react';
 import { Toaster } from './ui/Toaster';
-import { increaseCartItemApi } from '@/services/cart/handler';
+import { getCookie } from 'cookies-next';
 
 function Products() {
 
   const [products, setProducts] = useState<ProductsResponse | null>(null);
-
+  const token = getCookie("token");
   const [loading, setLoading] = useState<boolean>(true);
   const [alert, setAlert] = useState<{ show: boolean; message: string; status: boolean }>({
     show: false,
@@ -108,9 +108,9 @@ function Products() {
         </div>
         <div className='p-5 w-full'>
           <p className='text-orange-600 dark:text-white font-semibold uppercase text-2xl text-center'>{productItem?.title}</p>
-          <div className='flex items-end justify-end gap-3'>
-            <p className='text-red-400 line-through'>Rs.{productItem?.regularPrice}</p>
-            <p className='text-green-600 font-semibold text-xl'>Rs.{productItem?.salePrice}</p>
+          <div className='flex items-end justify-end gap-3 mt-5'>
+            <p className={`${token ? "text-red-400 line-through" : " text-text"} `}>Rs.{productItem?.regularPrice}</p>
+            <p className={`${token ? "text-green-600 font-semibold text-xl inline-block" : "hidden"}`}>Rs.{productItem?.salePrice}</p>
           </div>
           <div className='grid grid-cols-2 gap-5 mt-5'>
             <div
