@@ -1,4 +1,4 @@
-import ProfilePage from '@/pages/Profile'
+import ProfilePage from '@/web-pages/profile'
 import React from 'react'
 
 function page() {

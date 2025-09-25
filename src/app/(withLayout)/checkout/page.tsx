@@ -1,6 +1,6 @@
 "use client"
 
-import CheckoutPage from '@/pages/Checkout'
+import CheckoutPage from '@/web-pages/checkout'
 import React from 'react'
 
 function page() {

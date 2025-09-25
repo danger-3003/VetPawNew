@@ -75,6 +75,48 @@ function Products() {
     }
   };
 
+  const handleBuyItem = async ({ productItem }: { productItem: Product }) => {
+    try {
+      const payload = { productId: productItem?._id, quantity: 1 };
+      const response = await handleAddToCartApi(payload);
+
+      if (response.status === 200) {
+        addToCart();
+        setAlert({
+          show: true,
+          status: true,
+          message: response?.data?.message || "Product added to cart successfully",
+        });
+      }
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          status: true,
+          message: "",
+        });
+        handleNavigate("cart")
+      }, 2500);
+    } catch (error: unknown) {
+      let message = "Failed to add product to cart";
+      if (typeof error === "object" && error !== null && "response" in error) {
+        const errObj = error as { response?: { data?: { message?: string } } };
+        message = errObj.response?.data?.message || message;
+      }
+      setAlert({
+        show: true,
+        status: false,
+        message,
+      });
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          status: false,
+          message: "",
+        });
+      }, 2500);
+    }
+  }
+
   // const handleBuyItem = async ({ productId, quantity }: { productId: string; quantity: number }) => {
   //   const response = await increaseCartItemApi({ productId: productId, quantity: quantity });
   //   if (response?.status === 200) {
@@ -121,7 +163,7 @@ function Products() {
             </div>
             <div
               className='cursor-pointer bg-orange-400 dark:bg-orange-200 text-white dark:text-[#1e1e1e] font-semibold rounded-lg flex items-center justify-center py-1'
-              onClick={() => { handleNavigate("cart") }}
+              onClick={() => { handleBuyItem({ productItem }) }}
             >
               Buy
             </div>

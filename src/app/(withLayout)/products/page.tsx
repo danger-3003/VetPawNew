@@ -1,6 +1,6 @@
 "use client"
 
-import ProductsPage from '@/pages/Products'
+import ProductsPage from '@/web-pages/products'
 import React from 'react'
 
 function page() {

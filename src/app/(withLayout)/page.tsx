@@ -1,4 +1,4 @@
-import HomePage from '@/pages/Home';
+import HomePage from '@/web-pages/home';
 import React from 'react'
 
 function page() {

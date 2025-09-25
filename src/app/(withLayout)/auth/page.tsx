@@ -1,4 +1,4 @@
-import Authentication from '@/pages/Login'
+import Authentication from '@/web-pages/login'
 import React from 'react'
 
 function page() {

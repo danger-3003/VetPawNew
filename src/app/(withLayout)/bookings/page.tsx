@@ -1,6 +1,6 @@
 "use client"
 
-import BookingsPage from '@/pages/Bookings'
+import BookingsPage from '@/web-pages/bookings'
 import React from 'react'
 
 function page() {

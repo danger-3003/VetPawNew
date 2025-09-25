@@ -1,4 +1,4 @@
-import CartPage from '@/pages/Cart'
+import CartPage from '@/web-pages/cart'
 import React from 'react'
 
 function page() {

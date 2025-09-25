@@ -1,6 +1,6 @@
 "use client"
 
-import ContactPage from '@/pages/Contact'
+import ContactPage from '@/web-pages/contact'
 import React from 'react'
 
 function page() {

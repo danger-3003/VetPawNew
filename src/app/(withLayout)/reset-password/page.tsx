@@ -1,6 +1,6 @@
 "use client"
 
-import ForgotPasswordPage from '@/pages/ResetPassword'
+import ForgotPasswordPage from '@/web-pages/reset-password'
 import React from 'react'
 
 function page() {
